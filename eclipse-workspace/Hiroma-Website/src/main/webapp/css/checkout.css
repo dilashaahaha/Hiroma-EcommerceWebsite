@@ -1,0 +1,90 @@
+/* ============================================================
+   checkout.css  –  Checkout Page
+   Matches 15-checkout.html design exactly
+   ============================================================ */
+
+/* CHECKOUT NAV (minimal) */
+.checkout-nav{display:flex;align-items:center;justify-content:space-between;padding:18px 48px;border-bottom:1px solid var(--border);background:rgba(245,240,230,0.95);backdrop-filter:blur(14px);}
+.nav-secure{font-size:12px;color:var(--text-light);display:flex;align-items:center;gap:6px;}
+
+/* STEPS */
+.checkout-steps{display:flex;align-items:center;justify-content:center;padding:20px 48px;background:var(--white);border-bottom:1px solid var(--border);}
+.step{display:flex;align-items:center;gap:10px;padding:0 24px;}
+.step-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0;}
+.step-num.done{background:var(--green-deep);color:var(--cream);}
+.step-num.active{background:var(--amber);color:var(--cream);}
+.step-num.inactive{background:var(--cream-warm);color:var(--text-light);}
+.step-label{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;}
+.done-label{color:var(--text-mid);}
+.active-label{color:var(--green-deep);font-weight:500;}
+.inactive-label{color:var(--text-light);}
+.step-sep{width:60px;height:1px;background:var(--border);}
+
+/* CHECKOUT LAYOUT */
+.checkout-layout{display:grid;grid-template-columns:1fr 400px;min-height:80vh;}
+
+/* FORM SIDE */
+.checkout-form-side{padding:48px;border-right:1px solid var(--border);}
+.form-section-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:var(--green-deep);margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+
+/* FORM ELEMENTS */
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:18px;}
+.form-label{font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-mid);}
+.form-input{padding:13px 16px;border:1px solid var(--border);background:var(--white);border-radius:3px;font-size:14px;color:var(--text-dark);outline:none;transition:border-color 0.2s;width:100%;}
+.form-input:focus{border-color:var(--green-soft);}
+.form-input::placeholder{color:rgba(138,138,114,0.6);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-select{padding:13px 32px 13px 16px;border:1px solid var(--border);background:var(--white);border-radius:3px;font-size:14px;color:var(--text-dark);outline:none;appearance:none;width:100%;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%234A4A3A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;cursor:pointer;}
+
+/* ADDRESS CARDS */
+.address-cards{display:flex;flex-direction:column;gap:12px;margin-bottom:16px;}
+.addr-card{padding:16px 18px;border:1.5px solid var(--border);border-radius:4px;cursor:pointer;transition:all 0.2s;display:flex;align-items:flex-start;gap:12px;}
+.addr-card:hover{border-color:var(--green-soft);}
+.addr-card.selected{border-color:var(--green-deep);background:rgba(26,51,40,0.03);}
+.addr-radio{width:18px;height:18px;border:2px solid var(--border);border-radius:50%;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:border-color 0.2s;position:relative;}
+.addr-radio.selected{border-color:var(--green-deep);}
+.addr-radio.selected::after{content:'';width:8px;height:8px;border-radius:50%;background:var(--green-deep);position:absolute;}
+.addr-name{font-size:14px;color:var(--text-dark);font-weight:500;margin-bottom:3px;}
+.addr-street{font-size:13px;color:var(--text-mid);line-height:1.6;}
+.new-addr-btn{padding:13px 16px;border:1.5px dashed rgba(26,51,40,0.18);border-radius:4px;background:transparent;width:100%;font-size:13px;color:var(--green-soft);cursor:pointer;letter-spacing:0.04em;transition:all 0.2s;}
+.new-addr-btn:hover{border-color:var(--green-soft);background:var(--cream);}
+
+/* PAYMENT METHODS */
+.payment-methods{display:flex;flex-direction:column;gap:12px;margin-bottom:8px;}
+.pay-card{padding:16px 18px;border:1.5px solid var(--border);border-radius:4px;cursor:pointer;display:flex;align-items:center;gap:14px;transition:border-color 0.2s;}
+.pay-card:hover{border-color:var(--green-soft);}
+.pay-card.selected{border-color:var(--green-deep);background:rgba(26,51,40,0.03);}
+.pay-icon{width:48px;height:32px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.pay-label{font-size:14px;color:var(--text-dark);font-weight:400;flex:1;}
+.pay-desc{font-size:12px;color:var(--text-light);}
+
+/* ORDER SUMMARY SIDE */
+.checkout-summary{padding:40px 36px;background:var(--cream-warm);position:sticky;top:0;align-self:start;}
+.os-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--green-deep);margin-bottom:20px;}
+.os-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);}
+.os-item:last-of-type{border-bottom:none;}
+.os-img{width:52px;height:52px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+.os-name{font-size:13px;color:var(--text-dark);flex:1;line-height:1.4;}
+.os-qty{font-size:12px;color:var(--text-light);}
+.os-price{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--green-deep);}
+.os-totals{margin-top:20px;padding-top:20px;border-top:1px solid var(--border);}
+.os-total-row{display:flex;justify-content:space-between;font-size:14px;color:var(--text-mid);margin-bottom:10px;}
+.os-total-row.grand{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--green-deep);padding-top:10px;border-top:1px solid var(--border);}
+.btn-place-order{width:100%;padding:17px;background:var(--amber);color:var(--cream);font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;border:none;border-radius:3px;cursor:pointer;margin-top:24px;transition:background 0.2s;display:block;}
+.btn-place-order:hover{background:var(--amber-light);}
+.secure-note{text-align:center;font-size:11px;color:var(--text-light);margin-top:12px;display:flex;align-items:center;justify-content:center;gap:6px;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .checkout-layout{grid-template-columns:1fr;}
+  .checkout-summary{position:static;}
+  .checkout-form-side{padding:28px 20px;border-right:none;}
+  .checkout-nav{padding:14px 20px;}
+  .checkout-steps{padding:16px 20px;}
+  .step{padding:0 12px;}
+  .step-sep{width:30px;}
+}
+@media(max-width:560px){
+  .form-row{grid-template-columns:1fr;}
+  .checkout-summary{padding:28px 20px;}
+}
