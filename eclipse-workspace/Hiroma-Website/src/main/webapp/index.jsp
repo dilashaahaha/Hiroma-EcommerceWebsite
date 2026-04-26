@@ -1,8 +1,5 @@
-
-
 <html>
 <body>
 <h2>Hello World!</h2>
->>>>>>> fbbf8b6d4c4964cc667ccc8b7089b914351c5f3b
 </body>
 </html>
