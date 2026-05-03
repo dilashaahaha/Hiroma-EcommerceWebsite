@@ -1,18 +1,5 @@
-<<<<<<< HEAD
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"  isELIgnored="false" %>
 
-</body>
-</html>
-=======
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -304,30 +291,31 @@
             <a href="login.jsp">Sign in instead</a>
         </p>
 
-        <!-- Show this when you wire up Java later -->
-        <!-- <div class="alert-error">&#9888; Something went wrong. Please try again.</div> -->
+        <div class="alert-error" style="display:${empty error ? 'none' : 'flex'}">
+    &#9888; ${error}
+</div>
 
-        <form action="#" method="post">
+        <form action="${pageContext.request.contextPath}/register" method="post">
 
             <!-- First name + Last name side by side -->
             <div class="form-row">
                 <div class="form-group">
                     <label class="form-label" for="firstName">First name</label>
                     <input class="form-input" type="text" id="firstName" name="firstName"
-                           placeholder="Ram" required>
+                           placeholder="Ram" >
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="lastName">Last name</label>
                     <input class="form-input" type="text" id="lastName" name="lastName"
-                           placeholder="Sharma" required>
+                           placeholder="Sharma" >
                 </div>
             </div>
 
             <!-- Email -->
             <div class="form-group">
                 <label class="form-label" for="email">Email address</label>
-                <input class="form-input" type="email" id="email" name="email"
-                       placeholder="you@email.com" required>
+                <input class="form-input" type="text" id="email" name="email"
+                       placeholder="you@email.com" >
             </div>
 
             <!-- Phone -->
@@ -358,19 +346,19 @@
             <div class="form-group">
                 <label class="form-label" for="password">Password</label>
                 <input class="form-input" type="password" id="password" name="password"
-                       placeholder="Minimum 8 characters" required>
+                       placeholder="Minimum 8 characters" >
             </div>
 
             <!-- Confirm password -->
             <div class="form-group">
                 <label class="form-label" for="confirmPassword">Confirm password</label>
                 <input class="form-input" type="password" id="confirmPassword" name="confirmPassword"
-                       placeholder="Repeat your password" required>
+                       placeholder="Repeat your password" >
             </div>
 
             <!-- Terms -->
             <div class="form-check-row">
-                <input type="checkbox" id="terms" required>
+                <input type="checkbox" id="terms" >
                 <span>
                     I agree to Hiroma's <a href="#">Terms of Service</a> and
                     <a href="#">Privacy Policy</a>
@@ -393,4 +381,3 @@
 </script>
 </body>
 </html>
->>>>>>> c14b722ccb823087143f3c3a431c2069127f6881
