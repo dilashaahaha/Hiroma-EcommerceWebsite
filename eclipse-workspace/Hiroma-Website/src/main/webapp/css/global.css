@@ -1,1 +1,198 @@
 @charset "UTF-8";
+
+:root {
+    --green-dark: #163c2e;      
+    --green-hover: #1f5a43;
+    --cream: #f3eee4;           
+    --white: #ffffff;
+    --text-dark: #1e1e1e;
+    --text-muted: #8a8a8a;
+    --border: #e6e0d6;
+}
+
+/* BASE */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+}
+
+/* NAVBAR */
+.admin-navbar {
+    height: 60px;
+    background: var(--green-dark);
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    color: white;
+}
+
+.navbar-brand {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.navbar-brand span {
+    color: #e6c15a; /* gold tone */
+}
+
+.navbar-spacer {
+    flex: 1;
+}
+
+.navbar-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #2c6b53;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* LAYOUT */
+.admin-shell {
+    display: flex;
+}
+
+/* SIDEBAR */
+.admin-sidebar {
+    width: 220px;
+    height: calc(100vh - 60px);
+    background: var(--green-dark);
+    padding: 20px 15px;
+    color: white;
+}
+
+.sidebar-group-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 18px;
+    margin-bottom: 8px;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.sidebar-item:hover {
+    background: var(--green-hover);
+    color: white;
+}
+
+.sidebar-item.active {
+    background: #1f5a43;
+    color: white;
+}
+
+/* CONTENT */
+.admin-content {
+    flex: 1;
+    padding: 25px 30px;
+}
+
+/* HEADER */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.page-header h1 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.breadcrumb {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* BUTTON */
+.btn {
+    background: var(--green-dark);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: var(--green-hover);
+}
+
+/* STATS */
+.stats-grid {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    background: white;
+    padding: 18px;
+    border-radius: 10px;
+    flex: 1;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.sc-icon {
+    font-size: 18px;
+}
+
+.sc-num {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.sc-label {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* CARD */
+.card {
+    background: white;
+    border-radius: 10px;
+    padding: 18px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* TABLE */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th {
+    text-align: left;
+    font-size: 13px;
+    color: var(--text-muted);
+    padding-bottom: 10px;
+}
+
+.data-table td {
+    padding: 12px 0;
+    border-top: 1px solid var(--border);
+}
+
+/* FORM */
+form input, form select {
+    width: 100%;
+    padding: 9px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 12px;
+}
