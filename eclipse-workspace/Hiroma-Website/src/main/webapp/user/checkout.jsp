@@ -11,10 +11,16 @@
 </head>
 <body>
 
-<!-- NAVBAR (minimal for checkout) -->
 <nav class="checkout-nav">
-  <a href="${pageContext.request.contextPath}/user/home.jsp" class="nav-logo">H<span>i</span>roma</a>
-  <div class="nav-secure">&#128274; Secure checkout</div>
+  <a href="${pageContext.request.contextPath}/user/home.jsp" class="nav-logo">
+    H<span>i</span>roma
+  </a>
+  <div class="nav-secure">
+    <img src="${pageContext.request.contextPath}/images/lock.png" 
+         alt="Secure"
+         style="width:18px; height:18px; vertical-align:middle; margin-right:6px;">
+    Secure checkout
+  </div>
 </nav>
 
 <!-- CHECKOUT STEPS -->
@@ -35,6 +41,8 @@
   </div>
 </div>
 
+
+
 <!-- ALERTS -->
 <c:if test="${not empty sessionScope.errorMessage}">
   <div style="padding:0 48px;">
@@ -48,7 +56,7 @@
 
   <!-- FORM SIDE -->
   <div class="checkout-form-side">
-    <form action="${pageContext.request.contextPath}/OrderController" method="post" id="checkoutForm">
+    <form action="${pageContext.request.contextPath}/user/orders.jsp" method="post" id="checkoutForm">
       <input type="hidden" name="action" value="placeOrder">
 
       <!-- DELIVERY ADDRESS -->
@@ -117,21 +125,27 @@
       <div class="form-section-title" style="margin-top:36px;">Payment method</div>
       <div class="payment-methods" id="paymentMethods">
         <div class="pay-card selected" onclick="selectPayment(this,'COD')">
-          <div class="pay-icon" style="background:#EDE6D6;">&#128181;</div>
+         <div class="pay-icon" style="background:#EDE6D6;">
+         <img src="${pageContext.request.contextPath}/images/hehe.png" alt="Cash on Delivery"></div>
           <div>
             <div class="pay-label">Cash on Delivery</div>
             <div class="pay-desc">Pay when your order arrives</div>
           </div>
         </div>
         <div class="pay-card" onclick="selectPayment(this,'ESEWA')">
-          <div class="pay-icon" style="background:#EAF3DE;">&#128241;</div>
+          <div class="pay-icon" style="background:#EAF3DE;">
+          <img src="${pageContext.request.contextPath}/images/esewa.png" alt="eSewa">
+          </div>
+
           <div>
             <div class="pay-label">eSewa</div>
             <div class="pay-desc">Nepal's leading digital wallet</div>
           </div>
         </div>
         <div class="pay-card" onclick="selectPayment(this,'KHALTI')">
-          <div class="pay-icon" style="background:#E6F1FB;">&#128153;</div>
+          <div class="pay-icon" style="background:#E6F1FB;">
+          <img src="${pageContext.request.contextPath}/images/khalti.png" alt="Khalti">
+          </div>
           <div>
             <div class="pay-label">Khalti</div>
             <div class="pay-desc">Fast digital payment</div>
@@ -152,7 +166,7 @@
       <c:when test="${not empty requestScope.cartItems}">
         <c:forEach var="item" items="${requestScope.cartItems}">
           <div class="os-item">
-            <div class="os-img">&#9749;</div>
+            <div class="os-img"></div>
             <div class="os-name">
               <c:out value="${item.productName}"/><br>
               <span class="os-qty">&times; <c:out value="${item.quantity}"/></span>
@@ -164,17 +178,17 @@
       <%-- Static sample items for UI Milestone --%>
       <c:otherwise>
         <div class="os-item">
-          <div class="os-img" style="background:#EAF3DE;">&#127861;</div>
+          <div class="os-img" style="background:#EAF3DE;">    <img src="${pageContext.request.contextPath}/images/il_570xN.6426055539_90y2.jpg" alt="Silver Needle White Tea"></div>
           <div class="os-name">Illam First Flush<br><span class="os-qty">&times; 2</span></div>
           <div class="os-price">Rs 1,700</div>
         </div>
         <div class="os-item">
-          <div class="os-img" style="background:#FAEEDA;">&#127807;</div>
+          <div class="os-img" style="background:#FAEEDA;">    <img src="${pageContext.request.contextPath}/images/9a5609c0471d2c0906e97d04a7239936.jpg" alt="Silver Needle White Tea"></div>
           <div class="os-name">Silver Needle White<br><span class="os-qty">&times; 1</span></div>
           <div class="os-price">Rs 1,200</div>
         </div>
         <div class="os-item">
-          <div class="os-img" style="background:#E8F0EB;">&#127808;</div>
+          <div class="os-img" style="background:#E8F0EB;">    <img src="${pageContext.request.contextPath}/images/Picsart_26-04-14_15-39-49-366.jpg" alt="Silver Needle White Tea"></div>
           <div class="os-name">Himalayan Herbal Blend<br><span class="os-qty">&times; 1</span></div>
           <div class="os-price">Rs 650</div>
         </div>
@@ -190,10 +204,14 @@
     <button class="btn-place-order" onclick="submitOrder()">
       Place order &#8594;
     </button>
-    <div class="secure-note">&#128274; Your payment info is always secure</div>
-  </div>
-
-</div><!-- /checkout-layout -->
+<div class="secure-note">
+  <img src="${pageContext.request.contextPath}/images/lock.png" 
+       alt="Secure payment" 
+       style="width:20px; height:20px; object-fit:contain;">
+  Your payment info is always secure
+</div>
+</div><!-- /checkout-summary -->
+  </div><!-- /checkout-layout -->
 
 <script>
   function selectAddress(card, id) {

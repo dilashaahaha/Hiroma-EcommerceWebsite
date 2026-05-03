@@ -192,15 +192,15 @@
     <div class="category-row">
       <a href="${pageContext.request.contextPath}/user/product.jsp?category=all"
          class="cat-pill <c:if test="${activeCategory == 'all'}">active</c:if>">
-        <span class="cat-pill-icon">&#127811;</span> All teas <span class="cat-pill-count">46</span>
+        <span class="cat-pill-icon"></span> All teas <span class="cat-pill-count">46</span>
       </a>
       <a href="${pageContext.request.contextPath}/user/product.jsp?category=green"
          class="cat-pill <c:if test="${activeCategory == 'green'}">active</c:if>">
-        <span class="cat-pill-icon">&#127807;</span> Green <span class="cat-pill-count">12</span>
+        <span class="cat-pill-icon"></span> Green <span class="cat-pill-count">12</span>
       </a>
       <a href="${pageContext.request.contextPath}/user/product.jsp?category=black"
          class="cat-pill <c:if test="${activeCategory == 'black'}">active</c:if>">
-        <span class="cat-pill-icon">&#9749;</span> Black <span class="cat-pill-count">18</span>
+        <span class="cat-pill-icon"></span> Black <span class="cat-pill-count">18</span>
       </a>
       <a href="${pageContext.request.contextPath}/user/product.jsp?category=white"
          class="cat-pill <c:if test="${activeCategory == 'white'}">active</c:if>">
@@ -208,7 +208,7 @@
       </a>
       <a href="${pageContext.request.contextPath}/user/product.jsp?category=herbal"
          class="cat-pill <c:if test="${activeCategory == 'herbal'}">active</c:if>">
-        <span class="cat-pill-icon">&#127808;</span> Herbal <span class="cat-pill-count">9</span>
+        <span class="cat-pill-icon"></span> Herbal <span class="cat-pill-count">9</span>
       </a>
     </div>
 
@@ -272,8 +272,8 @@
         <c:otherwise>
           <!-- Card 1 -->
           <div class="product-card">
-            <div class="card-img" style="background:linear-gradient(135deg,#1A3328 0%,#2A5C3F 50%,#4A7C5F 100%);">
-              <div class="card-img-emoji">&#127861;</div>
+            <div class="card-img">
+            <img src="${pageContext.request.contextPath}/images/il_570xN.6426055539_90y2.jpg" alt="Illam First Flush Darjeeling">
               <div class="card-overlay-deco">Tea</div>
               <div class="card-badges"><span class="badge badge-bestseller">Best Seller</span><span class="badge badge-organic">Organic</span></div>
               <button class="wishlist-btn" onclick="toggleWishlist(this,1)">&#9825;</button>
@@ -295,12 +295,15 @@
               <div class="card-footer"><div><span class="card-price">Rs 850</span> <span class="card-price-unit">/ 100g</span></div><div class="card-weight-tag">100g</div></div>
             </div>
           </div>
-          <!-- Card 2 -->
+         <!-- Card 2 – FIXED: removed duplicate card-img-emoji inside card-img -->
           <div class="product-card">
-            <div class="card-img" style="background:linear-gradient(135deg,#C8893A 0%,#E8B86D 50%,#8A5A20 100%);">
-              <div class="card-img-emoji">&#127807;</div>
+            <div class="card-img">
+              <img src="${pageContext.request.contextPath}/images/9a5609c0471d2c0906e97d04a7239936.jpg" alt="Silver Needle White Tea">
               <div class="card-overlay-deco">White</div>
-              <div class="card-badges"><span class="badge badge-new">New Arrival</span><span class="badge badge-organic">Organic</span></div>
+              <div class="card-badges">
+                <span class="badge badge-new">New Arrival</span>
+                <span class="badge badge-organic">Organic</span>
+              </div>
               <button class="wishlist-btn" onclick="toggleWishlist(this,2)">&#9825;</button>
               <div class="card-actions">
                 <form action="${pageContext.request.contextPath}/CartController" method="post" style="flex:1;">
@@ -317,13 +320,17 @@
               <div class="card-name">Silver Needle White Tea</div>
               <div class="card-brand">Taplejung Organics</div>
               <div class="card-rating"><span class="card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="card-review-count">4.8 (31)</span></div>
-              <div class="card-footer"><div><span class="card-price">Rs 1,200</span> <span class="card-price-unit">/ 50g</span></div><div class="card-weight-tag">50g</div></div>
+              <div class="card-footer">
+                <div><span class="card-price">Rs 1,200</span> <span class="card-price-unit">/ 50g</span></div>
+                <div class="card-weight-tag">50g</div>
+              </div>
             </div>
           </div>
+
           <!-- Card 3 -->
           <div class="product-card">
-            <div class="card-img" style="background:linear-gradient(135deg,#3A5C4A 0%,#5A8C6A 50%,#223830 100%);">
-              <div class="card-img-emoji">&#127808;</div>
+            <div class="card-img">
+            <img src="${pageContext.request.contextPath}/images/Picsart_26-04-14_15-39-49-366.jpg" alt="Himalayan Herbal Blend">
               <div class="card-overlay-deco">Herbal</div>
               <div class="card-badges"><span class="badge badge-organic">Organic</span></div>
               <button class="wishlist-btn" onclick="toggleWishlist(this,3)">&#9825;</button>
@@ -347,7 +354,8 @@
           </div>
           <!-- Card 4 -->
           <div class="product-card">
-            <div class="card-img" style="background:linear-gradient(135deg,#5C3020 0%,#8A5030 50%,#3A1C10 100%);">
+            <div class="card-img">
+            <img src="${pageContext.request.contextPath}/images/71wJD5e7ML.jpg" alt="Moshi Morning Black">
               <div class="card-img-emoji">&#9749;</div>
               <div class="card-overlay-deco">Black</div>
               <div class="card-badges"><span class="badge badge-bestseller">Best Seller</span></div>
@@ -370,12 +378,15 @@
               <div class="card-footer"><div><span class="card-price">Rs 720</span> <span class="card-price-unit">/ 100g</span></div><div class="card-weight-tag">100g</div></div>
             </div>
           </div>
-          <!-- Card 5 -->
+          <!-- Card 5 – FIXED: img is now inside card-img div, not a direct child of product-card -->
           <div class="product-card">
-            <div class="card-img" style="background:linear-gradient(135deg,#2A5C3F 0%,#3A8C5A 50%,#1A3828 100%);">
-              <div class="card-img-emoji">&#127861;</div>
+            <div class="card-img">
+              <img src="${pageContext.request.contextPath}/images/OrganicGreentea1.png" alt="Organic Green Tea">
               <div class="card-overlay-deco">Green</div>
-              <div class="card-badges"><span class="badge badge-new">New</span><span class="badge badge-organic">Organic</span></div>
+              <div class="card-badges">
+                <span class="badge badge-new">New</span>
+                <span class="badge badge-organic">Organic</span>
+              </div>
               <button class="wishlist-btn" onclick="toggleWishlist(this,5)">&#9825;</button>
               <div class="card-actions">
                 <form action="${pageContext.request.contextPath}/CartController" method="post" style="flex:1;">
@@ -392,15 +403,21 @@
               <div class="card-name">Panchthar Spring Green</div>
               <div class="card-brand">Pure Nepal Herbs</div>
               <div class="card-rating"><span class="card-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span><span class="card-review-count">4.5 (18)</span></div>
-              <div class="card-footer"><div><span class="card-price">Rs 580</span> <span class="card-price-unit">/ 100g</span></div><div class="card-weight-tag">100g</div></div>
+              <div class="card-footer">
+                <div><span class="card-price">Rs 580</span> <span class="card-price-unit">/ 100g</span></div>
+                <div class="card-weight-tag">100g</div>
+              </div>
             </div>
           </div>
-          <!-- Card 6 -->
+
+         <!-- Card 6 – FIXED: removed duplicate nested product-card div -->
           <div class="product-card">
-            <div class="card-img" style="background:linear-gradient(135deg,#7A5A30 0%,#C8A050 50%,#5A3A18 100%);">
-              <div class="card-img-emoji">&#129723;</div>
+            <div class="card-img">
+              <img src="${pageContext.request.contextPath}/images/b8a9c1aca4b03118e36b75331d03f6dc.jpg" alt="Golden Oolong Tea">
               <div class="card-overlay-deco">Oolong</div>
-              <div class="card-badges"><span class="badge badge-organic">Organic</span></div>
+              <div class="card-badges">
+                <span class="badge badge-organic">Organic</span>
+              </div>
               <button class="wishlist-btn" onclick="toggleWishlist(this,6)">&#9825;</button>
               <div class="card-actions">
                 <form action="${pageContext.request.contextPath}/CartController" method="post" style="flex:1;">
@@ -417,7 +434,10 @@
               <div class="card-name">Taplejung Golden Oolong</div>
               <div class="card-brand">Taplejung Organics</div>
               <div class="card-rating"><span class="card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="card-review-count">4.9 (14)</span></div>
-              <div class="card-footer"><div><span class="card-price">Rs 1,450</span> <span class="card-price-unit">/ 50g</span></div><div class="card-weight-tag">50g</div></div>
+              <div class="card-footer">
+                <div><span class="card-price">Rs 1,450</span> <span class="card-price-unit">/ 50g</span></div>
+                <div class="card-weight-tag">50g</div>
+              </div>
             </div>
           </div>
         </c:otherwise>

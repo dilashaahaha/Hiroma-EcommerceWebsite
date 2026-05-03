@@ -9,6 +9,7 @@
     <title>H/ROMA – Pure Himalayan Teas</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/global.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -34,7 +35,7 @@
                     <a href="${pageContext.request.contextPath}/user/profile.jsp" class="nav-account">ACCOUNT</a>
                 </c:when>
                 <c:otherwise>
-                    <a href="${pageContext.request.contextPath}/authentication/login.jsp" class="nav-account">ACCOUNT</a>
+                    <a href="${pageContext.request.contextPath}/user/login.jsp" class="nav-account">ACCOUNT</a>
                 </c:otherwise>
             </c:choose>
             <a href="${pageContext.request.contextPath}/user/cart.jsp" class="nav-cart">
@@ -65,7 +66,10 @@
             </div>
 
             <div class="hero-image">
-                <div class="hero-img-placeholder">&#9749;</div>
+                <div class="hero-img-placeholder">
+  <img src="${pageContext.request.contextPath}/images/WhatsApp Image 2026-04-15 at 9.25.01 AM.jpeg" 
+       alt="Himalayan Tea" class="hero-img-circle">
+</div>
                 <div class="hero-tags">
                     <span class="hero-tag">ORGANIC</span>
                     <span class="hero-tag">HANDPICKED</span>
@@ -164,54 +168,54 @@
 
                 <c:otherwise>
                     <!-- Card 1: Tulsi Green Tea -->
-                    <div class="product-card">
-                        <div class="product-img-wrap">
-                            <div class="product-img-emoji">&#127807;</div>
-                            <span class="card-sale-tag">5 OFF</span>
-                        </div>
-                        <div class="product-body">
-                            <p class="product-origin">HIMALAYAN HERBS</p>
-                            <span class="badge badge-popular">POPULAR</span>
-                            <p class="product-name">Tulsi Green Tea</p>
-                            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                            <p class="product-meta">100g &bull; 50 cups</p>
-                            <div class="product-footer">
-                                <span class="product-price"><span class="currency">Rs.</span> 350</span>
-                                <form method="POST" action="${pageContext.request.contextPath}/cart">
-                                    <input type="hidden" name="action" value="add"/>
-                                    <input type="hidden" name="productId" value="1"/>
-                                    <button type="submit" class="btn-add">+ ADD</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+<div class="product-card">
+    <div class="product-img-wrap">
+        <img src="${pageContext.request.contextPath}/images/WhatsApp Image 2026-04-15 at 9.23.41 AM.jpeg" alt="Tulsi Green Tea">
+        <span class="card-sale-tag">5 OFF</span>
+    </div>
 
+    <div class="product-body">
+        <p class="product-origin">HIMALAYAN HERBS</p>
+        <span class="badge badge-popular">POPULAR</span>
+        <p class="product-name">Tulsi Green Tea</p>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="product-meta">100g &bull; 50 cups</p>
+        <div class="product-footer">
+            <span class="product-price"><span class="currency">Rs.</span> 350</span>
+            <form method="POST" action="${pageContext.request.contextPath}/cart">
+                <input type="hidden" name="action" value="add"/>
+                <input type="hidden" name="productId" value="1"/>
+                <button type="submit" class="btn-add">+ ADD</button>
+            </form>
+        </div>
+    </div>
+</div>
                     <!-- Card 2: Lavender Sleep Blend -->
-                    <div class="product-card">
-                        <div class="product-img-wrap">
-                            <div class="product-img-emoji">&#128144;</div>
-                        </div>
-                        <div class="product-body">
-                            <p class="product-origin">NEPAL BLENDS</p>
-                            <span class="badge badge-new">NEW</span>
-                            <p class="product-name">Lavender Sleep Blend</p>
-                            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
-                            <p class="product-meta">70g &bull; 35 cups</p>
-                            <div class="product-footer">
-                                <span class="product-price"><span class="currency">Rs.</span> 450</span>
-                                <form method="POST" action="${pageContext.request.contextPath}/cart">
-                                    <input type="hidden" name="action" value="add"/>
-                                    <input type="hidden" name="productId" value="2"/>
-                                    <button type="submit" class="btn-add">+ ADD</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+ <div class="product-card">
+    <div class="product-img-wrap">
+        <img src="${pageContext.request.contextPath}/images/WhatsApp Image 2026-04-15 at 11.00.04 AM.jpeg" alt="Lavender Sleep Blend">
+    </div>
+    <div class="product-body">
+        <p class="product-origin">NEPAL BLENDS</p>
+        <span class="badge badge-new">NEW</span>
+        <p class="product-name">Lavender Sleep Blend</p>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+        <p class="product-meta">70g &bull; 35 cups</p>
+        <div class="product-footer">
+            <span class="product-price"><span class="currency">Rs.</span> 450</span>
+            <form method="POST" action="${pageContext.request.contextPath}/cart">
+                <input type="hidden" name="action" value="add"/>
+                <input type="hidden" name="productId" value="2"/>
+                <button type="submit" class="btn-add">+ ADD</button>
+            </form>
+        </div>
+    </div>
+</div>
 
                     <!-- Card 3: Hibiscus Tea Blend -->
                     <div class="product-card">
                         <div class="product-img-wrap">
-                            <div class="product-img-emoji">&#127846;</div>
+                            <img src="${pageContext.request.contextPath}/images/WhatsApp Image 2026-04-15 at 11.00.07 AM.jpeg" alt="Hibiscus Tea Blend">
                         </div>
                         <div class="product-body">
                             <p class="product-origin">NEPAL BLENDS</p>
@@ -233,7 +237,7 @@
                     <!-- Card 4: Chamomile Dream -->
                     <div class="product-card">
                         <div class="product-img-wrap">
-                            <div class="product-img-emoji">&#127803;</div>
+                            <img src="${pageContext.request.contextPath}/images/WhatsApp Image 2026-04-15 at 11.00.04 AM (1).jpeg" alt="Chamomile Dream">
                         </div>
                         <div class="product-body">
                             <p class="product-origin">NEPAL BLENDS</p>
@@ -255,7 +259,7 @@
                     <!-- Card 5: Organic Green Tea -->
                     <div class="product-card">
                         <div class="product-img-wrap">
-                            <div class="product-img-emoji">&#127808;</div>
+                            <img src="${pageContext.request.contextPath}/images/WhatsApp Image 2026-04-15 at 11.00.05 AM.jpeg" alt="Organic Green Tea">
                         </div>
                         <div class="product-body">
                             <p class="product-origin">HIMALAYAN HERBS</p>

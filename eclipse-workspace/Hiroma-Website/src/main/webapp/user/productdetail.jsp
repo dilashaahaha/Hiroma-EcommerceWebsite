@@ -15,11 +15,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --green-deep:#1A3328; --green-mid:#2A4F3C; --green-soft:#4A7C5F;
-      --cream:#F5F0E6; --cream-warm:#EDE6D6;
-      --amber:#C8893A; --amber-light:#E8B86D;
-      --text-dark:#1A1A14; --text-mid:#4A4A3A; --text-light:#8A8A72;
-      --border:rgba(26,51,40,0.1); --white:#fff;
+      --green-deep:#1A3328;
+      --green-mid:#2A4F3C;
+      --green-soft:#4A7C5F;
+      --cream:#F5F0E6;
+      --cream-warm:#EDE6D6;
+      --amber:#C8893A;
+      --amber-light:#E8B86D;
+      --text-dark:#1A1A14;
+      --text-mid:#4A4A3A;
+      --text-light:#8A8A72;
+      --border:rgba(26,51,40,0.1);
+      --white:#fff;
     }
     *{margin:0;padding:0;box-sizing:border-box;}
     body{font-family:'DM Sans',sans-serif;background:var(--cream);-webkit-font-smoothing:antialiased;}
@@ -28,18 +35,92 @@
     button{font-family:inherit;cursor:pointer;}
 
     /* ── NAVBAR ── */
-    nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:rgba(245,240,230,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
-    .nav-logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--green-deep);}
-    .nav-logo span{color:var(--amber);font-style:italic;}
-    .nav-links{display:flex;gap:32px;}
-    .nav-links a{font-size:11px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-mid);transition:color 0.2s;}
-    .nav-links a:hover{color:var(--green-deep);}
-    .nav-right{display:flex;align-items:center;gap:16px;}
-    .nav-icon-btn{background:none;border:none;cursor:pointer;font-size:18px;color:var(--green-deep);padding:4px;}
-    .nav-cart-badge{position:relative;}
-    .cart-count{position:absolute;top:-6px;right:-6px;width:16px;height:16px;background:var(--amber);border-radius:50%;font-size:9px;color:var(--cream);display:flex;align-items:center;justify-content:center;font-weight:500;}
-    .btn-account{padding:9px 20px;background:var(--green-deep);color:var(--cream);border:none;border-radius:2px;font-size:10px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:background 0.2s;}
-    .btn-account:hover{background:var(--green-mid);}
+    nav{
+    position:sticky;
+    top:0;
+    z-index:100;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 48px;
+    background:rgba(245,240,230,0.95);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+    }
+    .nav-logo{
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px;
+    font-weight:600;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--green-deep);
+    }
+    .nav-logo span{
+    color:var(--amber);
+    font-style:italic;
+    }
+    .nav-links{
+    display:flex;
+    gap:32px;
+    }
+    .nav-links a{
+    font-size:11px;
+    font-weight:400;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--text-mid);
+    transition:color 0.2s;
+    }
+    .nav-links a:hover{
+    color:var(--green-deep);
+    }
+    .nav-right{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    }
+    .nav-icon-btn{
+    background:none;
+    border:none;
+    cursor:pointer;
+    font-size:18px;
+    color:var(--green-deep);
+    padding:4px;
+    }
+    .nav-cart-badge{
+    position:relative;
+    }
+    .cart-count{
+    position:absolute;
+    top:-6px;
+    right:-6px;
+    width:16px;
+    height:16px;
+    background:var(--amber);
+    border-radius:50%;
+    font-size:9px;
+    color:var(--cream);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:500;
+    }
+    .btn-account{
+    padding:9px 20px;
+    background:var(--green-deep);
+    color:var(--cream);
+    border:none;
+    border-radius:2px;f
+    ont-size:10px;
+    font-weight:500;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:background 0.2s;
+    }
+    .btn-account:hover{
+    background:var(--green-mid);
+    }
 
     /* ── BREADCRUMB ── */
     .breadcrumb{padding:16px 48px;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light);}
@@ -201,11 +282,8 @@
   <div class="product-gallery">
     <div class="gallery-bg"></div>
     <div class="gallery-badge">Best Seller</div>
-    <div class="gallery-main">&#127861;</div>
-    <div class="gallery-thumbs">
-      <div class="thumb active">&#127861;</div>
-      <div class="thumb">&#127807;</div>
-      <div class="thumb">&#128230;</div>
+    <div class="gallery-main">
+    <img src="${pageContext.request.contextPath}/images/il_570xN.6426055539_90y2.jpg" alt="Silver Needle White Tea"></div>
     </div>
   </div>
 
@@ -251,15 +329,15 @@
     <div class="purchase-actions">
       <%-- For now links to cart page directly (frontend milestone) --%>
       <a href="<%= ctx %>/user/cart.jsp" style="flex:1;">
-        <button class="btn-add-cart" style="width:100%;">&#128722; Add to cart</button>
+        <button class="btn-add-cart" style="width:100%;"> Add to cart</button>
       </a>
       <button class="btn-wishlist" onclick="toggleWishlist(this)" title="Add to wishlist">&#9825;</button>
     </div>
 
     <div class="guarantee-row">
-      <div class="guarantee-item">&#10003; <span>Organic certified</span></div>
-      <div class="guarantee-item">&#10003; <span>Free delivery over Rs 2,000</span></div>
-      <div class="guarantee-item">&#10003; <span>7-day return policy</span></div>
+      <div class="guarantee-item"> <span>Organic certified</span></div>
+      <div class="guarantee-item"> <span>Free delivery over Rs 2,000</span></div>
+      <div class="guarantee-item"><span>7-day return policy</span></div>
     </div>
   </div>
 </section>
@@ -275,10 +353,10 @@
 
   <div class="tab-content" id="tab-brew">
     <div class="brew-grid">
-      <div class="brew-card"><div class="brew-icon">&#128167;</div><div class="brew-label">Water temp</div><div class="brew-value">85&#8211;90&#176;C</div></div>
-      <div class="brew-card"><div class="brew-icon">&#9201;</div><div class="brew-label">Steep time</div><div class="brew-value">2&#8211;3 min</div></div>
-      <div class="brew-card"><div class="brew-icon">&#129749;</div><div class="brew-label">Amount</div><div class="brew-value">2g / 150ml</div></div>
-      <div class="brew-card"><div class="brew-icon">&#128260;</div><div class="brew-label">Re-steeps</div><div class="brew-value">2&#8211;3 times</div></div>
+      <div class="brew-card"><div class="brew-icon"></div><div class="brew-label">Water temp</div><div class="brew-value">85&#8211;90&#176;C</div></div>
+      <div class="brew-card"><div class="brew-icon"></div><div class="brew-label">Steep time</div><div class="brew-value">2&#8211;3 min</div></div>
+      <div class="brew-card"><div class="brew-icon"></div><div class="brew-label">Amount</div><div class="brew-value">2g / 150ml</div></div>
+      <div class="brew-card"><div class="brew-icon"></div><div class="brew-label">Re-steeps</div><div class="brew-value">2&#8211;3 times</div></div>
     </div>
   </div>
 

@@ -98,7 +98,8 @@
       <c:otherwise>
         <!-- Item 1 -->
         <div class="cart-item">
-          <div class="item-img" style="background:linear-gradient(135deg,#EAF3DE,#C0DD97);">&#127861;</div>
+          <div class="item-img">
+  <img src="${pageContext.request.contextPath}/images/Picsart_26-04-14_15-43-04-277.jpg" alt="Illam First Flush"></div>
           <div class="item-info">
             <div class="item-origin">Illam, Koshi Province</div>
             <div class="item-name">Illam First Flush Darjeeling</div>
@@ -120,7 +121,8 @@
         </div>
         <!-- Item 2 -->
         <div class="cart-item">
-          <div class="item-img" style="background:linear-gradient(135deg,#FAEEDA,#FAC775);">&#127807;</div>
+          <div class="item-img">
+          <img src="${pageContext.request.contextPath}/images/9a5609c0471d2c0906e97d04a7239936.jpg" alt="Silver Needle White Tea"></div>
           <div class="item-info">
             <div class="item-origin">Taplejung, Koshi Province</div>
             <div class="item-name">Silver Needle White Tea</div>
@@ -142,7 +144,8 @@
         </div>
         <!-- Item 3 -->
         <div class="cart-item">
-          <div class="item-img" style="background:linear-gradient(135deg,#E8F0EB,#9FE1CB);">&#127808;</div>
+             <div class="item-img">
+          <img src="${pageContext.request.contextPath}/images/Untitled.jpg" alt="Silver Needle White Tea"></div>
           <div class="item-info">
             <div class="item-origin">Dhankuta, Koshi Province</div>
             <div class="item-name">Himalayan Herbal Blend</div>
@@ -210,12 +213,11 @@
 
 <!-- GUARANTEE STRIP -->
 <div class="guarantee-strip">
-  <div class="guarantee-item">&#128274; <span>Secure checkout</span></div>
-  <div class="guarantee-item">&#128666; <span>Free delivery over Rs 2,000</span></div>
-  <div class="guarantee-item">&#8617; <span>7-day returns</span></div>
-  <div class="guarantee-item">&#10003; <span>Organic certified products</span></div>
+  <div class="guarantee-item">• <span>Secure checkout</span></div>
+  <div class="guarantee-item">• <span>Free delivery over Rs 2,000</span></div>
+  <div class="guarantee-item">• <span>7-day returns</span></div>
+  <div class="guarantee-item">• <span>Organic certified products</span></div>
 </div>
-
 <!-- FOOTER -->
 <footer class="site-footer">
   <div class="footer-grid">

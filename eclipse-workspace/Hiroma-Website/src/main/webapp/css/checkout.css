@@ -20,6 +20,22 @@
 .inactive-label{color:var(--text-light);}
 .step-sep{width:60px;height:1px;background:var(--border);}
 
+.nav-secure img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+.checkout-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;  /* logo left, secure right */
+  padding: 18px 48px;
+  background: rgba(245,240,230,0.96);
+  border-bottom: 1px solid var(--border);
+}
 /* CHECKOUT LAYOUT */
 .checkout-layout{display:grid;grid-template-columns:1fr 400px;min-height:80vh;}
 
