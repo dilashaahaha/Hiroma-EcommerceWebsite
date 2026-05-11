@@ -20,7 +20,6 @@ public class AdminbrandServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    // ── GET: view brands OR approve/reject ────────────────────────────────
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -47,7 +46,7 @@ public class AdminbrandServlet extends HttpServlet {
                     + "/admin/brands?message=Brand+deleted");
 
         } else {
-            // Show brand list filtered by status
+
             List<Map<String, String>> brandList = getBrands(filter);
             request.setAttribute("brandList", brandList);
             request.setAttribute("filter", filter != null ? filter : "pending");

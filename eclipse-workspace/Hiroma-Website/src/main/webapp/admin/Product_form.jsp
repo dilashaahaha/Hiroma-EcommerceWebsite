@@ -179,7 +179,7 @@
               <input class="form-input" type="url" name="imageUrl"
                      value="${not empty product ? product.imageUrl : ''}"
                      placeholder="https://example.com/image.jpg">
-            </div>
+            </div> 
           </div>
 
           <!-- VISIBILITY -->

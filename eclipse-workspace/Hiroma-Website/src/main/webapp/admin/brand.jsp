@@ -9,8 +9,6 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/brand.css">
 </head>
 <body>
-
-<!-- SIDEBAR -->
 <aside class="sidebar">
     <div class="sidebar-logo">
         <div class="name">H<span>i</span>roma</div>
@@ -29,10 +27,8 @@
     </nav>
 </aside>
 
-<!-- MAIN -->
 <div class="main">
 
-    <!-- TOPBAR -->
     <div class="topbar">
         <div class="topbar-left">
             <div class="topbar-title">Brands</div>
@@ -45,7 +41,6 @@
 
     <div class="content">
 
-        <!-- TABS -->
         <div class="tabs">
             <a href="${pageContext.request.contextPath}/brands?filter=pending"
                class="tab ${param.filter == 'pending' || param.filter == null ? 'active' : ''}">
@@ -69,7 +64,7 @@
         <!-- BRAND CARDS GRID -->
         <div class="brand-grid">
 
-            <!-- Card 1: Illam Organic Teas -->
+
             <div class="brand-card">
                 <div class="card-image-wrap">
                     <img src="${pageContext.request.contextPath}/images/illam.webp" alt="Illam Organic Teas" class="card-image">
@@ -93,7 +88,6 @@
                 </div>
             </div>
 
-            <!-- Card 2: Himalayan Green Tea -->
             <div class="brand-card">
                 <div class="card-image-wrap">
                     <img src="${pageContext.request.contextPath}/images/taplejung.jpg" alt="Himalayan Green Tea" class="card-image">
@@ -117,7 +111,6 @@
                 </div>
             </div>
 
-            <!-- Card 3: Sunita Green Tea -->
             <div class="brand-card">
                 <div class="card-image-wrap">
                     <img src="${pageContext.request.contextPath}/images/sunita.webp" alt="Sunita Green Tea" class="card-image">

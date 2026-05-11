@@ -6,8 +6,8 @@ public class User {
     private String fullName;
     private String email;
     private String phone;
-    private String role;     // admin, vendor, customer
-    private String status;   // Active, Inactive
+    private String role;     
+    private String status;  
     private String joinedDate;
     private int    orderCount;
     private String password;

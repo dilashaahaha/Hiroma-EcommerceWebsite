@@ -23,7 +23,7 @@ public class AdminproductServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    // ── GET: view all products OR show add/edit form ──────────────────────
+   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -31,21 +31,21 @@ public class AdminproductServlet extends HttpServlet {
         String action = request.getParameter("action");
 
         if ("edit".equals(action)) {
-            // Show edit form with existing product data
+            
             int id = Integer.parseInt(request.getParameter("id"));
             Product product = getProductById(id);
             request.setAttribute("product", product);
             request.getRequestDispatcher("/admin/Product_form.jsp").forward(request, response);
 
         } else if ("delete".equals(action)) {
-            // Delete product and redirect back with message
+            
             int id = Integer.parseInt(request.getParameter("id"));
             deleteProduct(id);
             response.sendRedirect(request.getContextPath()
                     + "/admin/products?message=Product+deleted+successfully");
 
         } else {
-            // Show all products list
+            
             List<Product> productList = getAllProducts();
             request.setAttribute("productList", productList);
             request.setAttribute("totalProducts", productList.size());
@@ -53,14 +53,13 @@ public class AdminproductServlet extends HttpServlet {
         }
     }
 
-    // ── POST: save new product OR update existing ─────────────────────────
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         String action = request.getParameter("action");
 
-        // ── Validation ────────────────────────────────────────────────────
         String productName   = request.getParameter("productName");
         String description   = request.getParameter("description");
         String categoryId    = request.getParameter("categoryId");
@@ -93,7 +92,6 @@ public class AdminproductServlet extends HttpServlet {
             return;
         }
 
-        // ── Handle image upload ───────────────────────────────────────────
         String imageUrl = request.getParameter("imageUrl");
         Part filePart   = request.getPart("image");
 
@@ -105,8 +103,7 @@ public class AdminproductServlet extends HttpServlet {
             filePart.write(uploadDir + File.separator + fileName);
             imageUrl = request.getContextPath() + "/images/" + fileName;
         }
-
-        // ── Determine status based on stock ───────────────────────────────
+        
         int stock     = Integer.parseInt(stockQuantity);
         int lowAlert  = (lowStockAlert != null && !lowStockAlert.isEmpty())
                         ? Integer.parseInt(lowStockAlert) : 10;
@@ -128,8 +125,7 @@ public class AdminproductServlet extends HttpServlet {
         }
     }
 
-    // ── DB HELPERS ────────────────────────────────────────────────────────
-
+   
     private List<Product> getAllProducts() {
         List<Product> list = new ArrayList<>();
         String sql = "SELECT p.id, p.product_name, p.description, p.category_id, p.brand_id, "

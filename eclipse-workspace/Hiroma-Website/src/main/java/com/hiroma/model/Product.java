@@ -50,7 +50,7 @@ public class Product {
     public String getImageUrl(){ return imageUrl; }
     public String getStatus() { return status; }
     public String getCategoryName(){return categoryName;}
-    public String getBrandNmae(){return brandName;}
+    public String getBrandName(){return brandName;}
 
     public void setId(int id) { this.id = id; }
     public void setProductName(String productName) { this.productName = productName; }

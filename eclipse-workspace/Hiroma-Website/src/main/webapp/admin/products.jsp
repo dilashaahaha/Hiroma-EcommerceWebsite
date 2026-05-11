@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,6 +41,10 @@
     </div>
 
     <div class="content">
+    
+    <c:if test="${not empty param.message}">
+        <div class="success-message">${param.message}</div>
+    </c:if>
 
         <!-- FILTERS -->
         <div class="filters-bar">
@@ -89,7 +94,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Row 1 -->
+                   
                     <tr>
                         <td><input type="checkbox"></td>
                         <td>
@@ -116,13 +121,12 @@
                         <td><span class="badge badge-active">Active</span></td>
                         <td>
                             <div class="actions-cell">
-                                <a href="${pageContext.request.contextPath}/productform?id=1" ></a>
-                                <a href="${pageContext.request.contextPath}/viewProduct?id=1" ></a>
+                                <a href="${pageContext.request.contextPath}/admin/products?action=edit&id=1" class="action-btn" title="Edit">Edit</a>
                                 <a href="${pageContext.request.contextPath}/deleteProduct?id=1" class="action-btn delete" title="Delete" onclick="return confirm('Are you sure?')">✕</a>
                             </div>
                         </td>
                     </tr>
-                    <!-- Row 2 -->
+                   
                     <tr>
                         <td><input type="checkbox"></td>
                         <td>
@@ -150,13 +154,12 @@
                         <td><span class="badge badge-active">Active</span></td>
                         <td>
                             <div class="actions-cell">
-                                <a href="${pageContext.request.contextPath}/productform?id=2" ></a>
-                                <a href="${pageContext.request.contextPath}/viewProduct?id=2" ></a>
+                                <a href="${pageContext.request.contextPath}/admin/products?action=edit&id=1" class="action-btn" title="Edit">Edit</a>
                                 <a href="${pageContext.request.contextPath}/deleteProduct?id=2" class="action-btn delete" title="Delete" onclick="return confirm('Are you sure?')">✕</a>
                             </div>
                         </td>
                     </tr>
-                    <!-- Row 3 -->
+                   
                     <tr>
                         <td><input type="checkbox"></td>
                         <td>
@@ -184,13 +187,12 @@
                         <td><span class="badge badge-active">Active</span></td>
                         <td>
                             <div class="actions-cell">
-                                <a href="${pageContext.request.contextPath}/productform?id=3" ></a>
-                                <a href="${pageContext.request.contextPath}/viewProduct?id=3" ></a>
+                                <a href="${pageContext.request.contextPath}/admin/products?action=edit&id=1" class="action-btn" title="Edit">Edit</a>
                                 <a href="${pageContext.request.contextPath}/deleteProduct?id=3" class="action-btn delete" title="Delete" onclick="return confirm('Are you sure?')">✕</a>
                             </div>
                         </td>
                     </tr>
-                    <!-- Row 4 -->
+                  
                     <tr>
                         <td><input type="checkbox"></td>
                         <td>
@@ -218,13 +220,12 @@
                         <td><span class="badge badge-low">Low Stock</span></td>
                         <td>
                             <div class="actions-cell">
-                                <a href="${pageContext.request.contextPath}/productform?id=4" ></a>
-                                <a href="${pageContext.request.contextPath}/viewProduct?id=4" ></a>
+                                <a href="${pageContext.request.contextPath}/admin/products?action=edit&id=1" class="action-btn" title="Edit">Edit</a>
                                 <a href="${pageContext.request.contextPath}/deleteProduct?id=4" class="action-btn delete" title="Delete" onclick="return confirm('Are you sure?')">✕</a>
                             </div>
                         </td>
                     </tr>
-                    <!-- Row 5 -->
+                   
                     <tr>
                         <td><input type="checkbox"></td>
                         <td>
@@ -252,12 +253,13 @@
                         <td><span class="badge badge-inactive">Inactive</span></td>
                         <td>
                             <div class="actions-cell">
-                                <a href="${pageContext.request.contextPath}/productform?id=5" ></a>
-                                <a href="${pageContext.request.contextPath}/viewProduct?id=5" ></a>
+                                <a href="${pageContext.request.contextPath}/admin/products?action=edit&id=1" class="action-btn" title="Edit">Edit</a>
                                 <a href="${pageContext.request.contextPath}/deleteProduct?id=5" class="action-btn delete" title="Delete" onclick="return confirm('Are you sure?')">✕</a>
                             </div>
                         </td>
                     </tr>
+
+                    
                 </tbody>
             </table>
             <div class="pagination">

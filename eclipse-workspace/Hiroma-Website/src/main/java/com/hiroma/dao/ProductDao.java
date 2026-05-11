@@ -2,7 +2,6 @@ package com.hiroma.dao;
 
 import com.hiroma.model.Product;
 import com.hiroma.util.DBConnection;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -90,7 +89,6 @@ public class ProductDao {
         return false;
     }
 
-    // ── UPDATE PRODUCT ──
     public boolean updateProduct(Product product) {
         String sql = "UPDATE products SET "
                    + "product_name = ?, description = ?, category_id = ?, brand_id = ?, "
@@ -120,7 +118,6 @@ public class ProductDao {
         return false;
     }
 
-    // ── DELETE PRODUCT ──
     public boolean deleteProduct(int id) {
         String sql = "DELETE FROM products WHERE id = ?";
 
@@ -136,7 +133,6 @@ public class ProductDao {
         return false;
     }
 
-    // ── COUNT PRODUCTS ──
     public int countAllProducts() {
         String sql = "SELECT COUNT(*) FROM products";
         try (Connection conn = DBConnection.getConnection();
@@ -149,7 +145,6 @@ public class ProductDao {
         return 0;
     }
 
-    // ── MAP ROW TO PRODUCT ──
     private Product mapRow(ResultSet rs) throws SQLException {
         Product p = new Product();
         p.setId           (rs.getInt   ("id"));

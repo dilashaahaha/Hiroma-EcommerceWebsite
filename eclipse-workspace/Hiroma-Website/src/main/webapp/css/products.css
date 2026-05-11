@@ -526,3 +526,13 @@ body {
 .page-btn:hover:not(.active) {
     background: var(--cream);
 }
+
+.success-message {
+    padding: 12px 16px;
+    background: #EAF3DE;
+    color: #27613A;
+    border: 1px solid #97C459;
+    border-radius: 3px;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
