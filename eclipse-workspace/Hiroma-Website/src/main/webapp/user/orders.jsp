@@ -1,3 +1,10 @@
+<%--
+    orders.jsp
+    Location: src/main/webapp/user/orders.jsp
+    Author: M3
+    Description: Confirm order after checkout.
+                 Import this into other JSP files using:
+                 <%@ include file="/user/orders.jsp" --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -11,7 +18,7 @@
 </head>
 <body>
 
-<!-- NAV -->
+<%-- NAVBAR --%>
 <nav class="oh-nav">
   <a href="${pageContext.request.contextPath}/user/home.jsp" class="nav-logo">
     H<span>i</span>roma
@@ -21,13 +28,13 @@
   </div>
 </nav>
 
-<!-- PAGE HEADER -->
+<%-- HEADER PAGE --%>
 <div class="page-header">
   <div class="page-eyebrow">Your account</div>
   <h1 class="page-title">Order <em>history</em></h1>
 </div>
 
-<!-- ALERTS -->
+<%-- ALERTS --%>
 <c:if test="${not empty sessionScope.successMessage}">
   <div class="alert-wrap">
     <div class="alert alert-success"><c:out value="${sessionScope.successMessage}"/></div>
@@ -35,7 +42,7 @@
   <c:remove var="successMessage" scope="session"/>
 </c:if>
 
-<!-- ORDER LIST -->
+<%-- ORDER LIST --%>
 <div class="oh-content">
 
   <c:choose>
@@ -43,7 +50,7 @@
       <c:forEach var="order" items="${requestScope.orders}">
         <div class="order-card">
 
-          <!-- CARD HEADER -->
+          <%-- CARD HEADER --%>
           <div class="order-header">
             <div class="order-meta">
               <div class="order-id">Order #<c:out value="${order.orderId}"/></div>
@@ -58,7 +65,7 @@
             </span>
           </div>
 
-          <!-- ORDER ITEMS -->
+          <%-- ORDER ITEMS --%>
           <div class="order-items">
             <c:forEach var="item" items="${order.items}">
               <div class="order-item-thumb">
@@ -74,7 +81,7 @@
             </c:forEach>
           </div>
 
-          <!-- TRACKING BAR (shown only when not delivered) -->
+          <%-- TRACKING BAR --%>
           <c:if test="${order.status != 'DELIVERED'}">
             <div class="tracking-bar">
               <div class="track-steps">
@@ -101,7 +108,7 @@
             </div>
           </c:if>
 
-          <!-- CARD FOOTER -->
+          <%-- CARD FOOTER --%>
           <div class="order-footer">
             <div class="order-total">Rs <c:out value="${order.total}"/></div>
             <div class="order-actions">
@@ -130,10 +137,10 @@
       </c:forEach>
     </c:when>
 
-    <%-- Static fallback for UI milestone / no orders --%>
+ 
     <c:otherwise>
 
-      <!-- ORDER CARD 1 -->
+      <%-- ORDER CARD --%>
       <div class="order-card">
         <div class="order-header">
           <div class="order-meta">
@@ -145,7 +152,7 @@
         <div class="order-items">
           <div class="order-item-thumb">
             <div class="item-img" style="background:#EAF3DE;">
-              <img src="${pageContext.request.contextPath}/images/il_570xN.6426055539_90y2.jpg" alt="Illam First Flush">
+              <img src="${pageContext.request.contextPath}/images/ilamblacktea.jpg" alt="Illam First Flush">
             </div>
             <div class="item-info">
               <div class="item-name">Illam First Flush</div>
@@ -154,7 +161,7 @@
           </div>
           <div class="order-item-thumb">
             <div class="item-img" style="background:#FAEEDA;">
-              <img src="${pageContext.request.contextPath}/images/9a5609c0471d2c0906e97d04a7239936.jpg" alt="Silver Needle White">
+              <img src="${pageContext.request.contextPath}/images/silverneedle.jpg" alt="Silver Needle White">
             </div>
             <div class="item-info">
               <div class="item-name">Silver Needle White</div>
@@ -163,7 +170,7 @@
           </div>
           <div class="order-item-thumb">
             <div class="item-img" style="background:#E8F0EB;">
-              <img src="${pageContext.request.contextPath}/images/Picsart_26-04-14_15-39-49-366.jpg" alt="Himalayan Herbal Blend">
+              <img src="${pageContext.request.contextPath}/images/himalayan.jpg" alt="Himalayan Herbal Blend">
             </div>
             <div class="item-info">
               <div class="item-name">Himalayan Herbal Blend</div>
@@ -203,7 +210,7 @@
         </div>
       </div>
 
-      <!-- ORDER CARD 2 -->
+     
       <div class="order-card">
         <div class="order-header">
           <div class="order-meta">
@@ -215,7 +222,7 @@
         <div class="order-items">
           <div class="order-item-thumb">
             <div class="item-img" style="background:#FAEEDA;">
-              <img src="${pageContext.request.contextPath}/images/9a5609c0471d2c0906e97d04a7239936.jpg" alt="Silver Needle White Tea">
+              <img src="${pageContext.request.contextPath}/images/silverneedle.jpg" alt="Silver Needle White Tea">
             </div>
             <div class="item-info">
               <div class="item-name">Silver Needle White Tea</div>
@@ -244,7 +251,7 @@
         <div class="order-items">
           <div class="order-item-thumb">
             <div class="item-img" style="background:#EAF3DE;">
-              <img src="${pageContext.request.contextPath}/images/il_570xN.6426055539_90y2.jpg" alt="Illam First Flush Darjeeling">
+              <img src="${pageContext.request.contextPath}/images/ilamblacktea.jpg" alt="Illam First Flush Darjeeling">
             </div>
             <div class="item-info">
               <div class="item-name">Illam First Flush Darjeeling</div>
@@ -268,3 +275,4 @@
 
 </body>
 </html>
+

@@ -1,3 +1,11 @@
+<%--
+    cart.jsp
+    Location: src/main/webapp/user/product.jsp
+    Author: M3
+    Description: Contains items added to cart.
+                 Import this into other JSP files using:
+                 <%@ include file="/user/cart.jsp" --%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -11,7 +19,7 @@
 </head>
 <body>
 
-<!-- NAVBAR -->
+<%-- NAVBAR --%>
 <nav class="site-nav">
   <a href="${pageContext.request.contextPath}/user/home.jsp" class="nav-logo">H<span>i</span>roma</a>
   <div class="nav-links">
@@ -38,7 +46,7 @@
   </div>
 </nav>
 
-<!-- PAGE HERO -->
+<%-- HERO PAGE --%>
 <div class="page-hero-cart">
   <div class="page-eyebrow">Your cart</div>
   <h1 class="page-title">
@@ -46,7 +54,7 @@
   </h1>
 </div>
 
-<!-- ALERTS -->
+<%-- ALERTS --%>
 <c:if test="${not empty sessionScope.successMessage}">
   <div style="padding:0 48px;">
     <div class="alert alert-success"><c:out value="${sessionScope.successMessage}"/></div>
@@ -60,13 +68,11 @@
   <c:remove var="errorMessage" scope="session"/>
 </c:if>
 
-<!-- CART LAYOUT -->
+<%-- CART LAYOUT --%>
 <div class="cart-layout">
 
-  <!-- CART ITEMS -->
   <div class="cart-items">
 
-    <%-- Dynamic: rendered by CartController when "cartItems" request attribute is set --%>
     <c:choose>
       <c:when test="${not empty requestScope.cartItems}">
         <c:forEach var="item" items="${requestScope.cartItems}">
@@ -94,12 +100,11 @@
         </c:forEach>
       </c:when>
 
-      <%-- Static sample items for UI Milestone --%>
       <c:otherwise>
-        <!-- Item 1 -->
+        <%-- ITEMS --%>
         <div class="cart-item">
           <div class="item-img">
-  <img src="${pageContext.request.contextPath}/images/Picsart_26-04-14_15-43-04-277.jpg" alt="Illam First Flush"></div>
+  <img src="${pageContext.request.contextPath}/images/Ilamtea.jpg" alt="Illam First Flush"></div>
           <div class="item-info">
             <div class="item-origin">Illam, Koshi Province</div>
             <div class="item-name">Illam First Flush Darjeeling</div>
@@ -119,10 +124,13 @@
             </form>
           </div>
         </div>
-        <!-- Item 2 -->
+
+
+
+
         <div class="cart-item">
           <div class="item-img">
-          <img src="${pageContext.request.contextPath}/images/9a5609c0471d2c0906e97d04a7239936.jpg" alt="Silver Needle White Tea"></div>
+          <img src="${pageContext.request.contextPath}/images/silverneedle.jpg" alt="Silver Needle White Tea"></div>
           <div class="item-info">
             <div class="item-origin">Taplejung, Koshi Province</div>
             <div class="item-name">Silver Needle White Tea</div>
@@ -142,10 +150,12 @@
             </form>
           </div>
         </div>
-        <!-- Item 3 -->
+
+
+
         <div class="cart-item">
              <div class="item-img">
-          <img src="${pageContext.request.contextPath}/images/Untitled.jpg" alt="Silver Needle White Tea"></div>
+          <img src="${pageContext.request.contextPath}/images/tokla.jpg" alt="Tokla Tea"></div>
           <div class="item-info">
             <div class="item-origin">Dhankuta, Koshi Province</div>
             <div class="item-name">Himalayan Herbal Blend</div>
@@ -168,9 +178,9 @@
       </c:otherwise>
     </c:choose>
 
-  </div><!-- /cart-items -->
+  </div>
 
-  <!-- ORDER SUMMARY -->
+  <%-- ORDER ITEMS --%>
   <div class="cart-summary">
     <div class="summary-title">Order summary</div>
     <div class="summary-row">
@@ -190,7 +200,7 @@
       <span>Rs <c:out value="${not empty requestScope.total ? requestScope.total : '3,550'}"/></span>
     </div>
 
-    <!-- Promo Code -->
+    <%-- PROMO CODE --%>
     <div class="promo-row">
       <input class="promo-input" type="text" placeholder="Promo code" id="promoCode">
       <button class="promo-btn" onclick="applyPromo()">Apply</button>
@@ -209,15 +219,16 @@
     </p>
   </div>
 
-</div><!-- /cart-layout -->
+</div>
 
-<!-- GUARANTEE STRIP -->
+<%-- GUARANTEE STRIP --%>
 <div class="guarantee-strip">
   <div class="guarantee-item">• <span>Secure checkout</span></div>
   <div class="guarantee-item">• <span>Free delivery over Rs 2,000</span></div>
   <div class="guarantee-item">• <span>7-day returns</span></div>
   <div class="guarantee-item">• <span>Organic certified products</span></div>
 </div>
+
 <!-- FOOTER -->
 <footer class="site-footer">
   <div class="footer-grid">

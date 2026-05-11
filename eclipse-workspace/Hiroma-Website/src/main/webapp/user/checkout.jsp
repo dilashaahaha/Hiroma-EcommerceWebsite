@@ -1,3 +1,10 @@
+<%--
+    checkout.jsp
+    Location: src/main/webapp/user/checkout.jsp
+    Author: M3
+    Description: Proceed to checkout after adding items to cart.
+                 Import this into other JSP files using:
+                 <%@ include file="/user/checkout.jsp" --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -16,14 +23,14 @@
     H<span>i</span>roma
   </a>
   <div class="nav-secure">
-    <img src="${pageContext.request.contextPath}/images/lock.png" 
+    <img src="${pageContext.request.contextPath}/images/Lock.png" 
          alt="Secure"
          style="width:18px; height:18px; vertical-align:middle; margin-right:6px;">
     Secure checkout
   </div>
 </nav>
 
-<!-- CHECKOUT STEPS -->
+<%-- CHECKOUT STEPS--%>
 <div class="checkout-steps">
   <div class="step">
     <div class="step-num done">&#10003;</div>
@@ -43,7 +50,7 @@
 
 
 
-<!-- ALERTS -->
+<%-- ALERTS --%>
 <c:if test="${not empty sessionScope.errorMessage}">
   <div style="padding:0 48px;">
     <div class="alert alert-error"><c:out value="${sessionScope.errorMessage}"/></div>
@@ -51,7 +58,7 @@
   <c:remove var="errorMessage" scope="session"/>
 </c:if>
 
-<!-- CHECKOUT LAYOUT -->
+<%-- CHECKOUT LAYOUT --%>
 <div class="checkout-layout">
 
   <!-- FORM SIDE -->
@@ -59,7 +66,7 @@
     <form action="${pageContext.request.contextPath}/user/orders.jsp" method="post" id="checkoutForm">
       <input type="hidden" name="action" value="placeOrder">
 
-      <!-- DELIVERY ADDRESS -->
+     <%-- DELIVERY ADDRESS --%>
       <div class="form-section-title">Delivery address</div>
 
       <div class="address-cards" id="addressCards">
@@ -84,7 +91,7 @@
         + Add a new address
       </button>
 
-      <!-- New Address Form -->
+      <%-- NEW ADDRESS FORM --%>
       <div id="newAddressForm" style="display:none; margin-top:16px;">
         <div class="form-row">
           <div class="form-group">
@@ -121,12 +128,12 @@
         </div>
       </div>
 
-      <!-- PAYMENT METHOD -->
+      <%-- PAYMENT METHOD --%>
       <div class="form-section-title" style="margin-top:36px;">Payment method</div>
       <div class="payment-methods" id="paymentMethods">
         <div class="pay-card selected" onclick="selectPayment(this,'COD')">
          <div class="pay-icon" style="background:#EDE6D6;">
-         <img src="${pageContext.request.contextPath}/images/hehe.png" alt="Cash on Delivery"></div>
+         <img src="${pageContext.request.contextPath}/images/cod.png" alt="Cash on Delivery"></div>
           <div>
             <div class="pay-label">Cash on Delivery</div>
             <div class="pay-desc">Pay when your order arrives</div>
@@ -134,7 +141,7 @@
         </div>
         <div class="pay-card" onclick="selectPayment(this,'ESEWA')">
           <div class="pay-icon" style="background:#EAF3DE;">
-          <img src="${pageContext.request.contextPath}/images/esewa.png" alt="eSewa">
+          <img src="${pageContext.request.contextPath}/images/Esewa.png" alt="eSewa">
           </div>
 
           <div>
@@ -144,7 +151,7 @@
         </div>
         <div class="pay-card" onclick="selectPayment(this,'KHALTI')">
           <div class="pay-icon" style="background:#E6F1FB;">
-          <img src="${pageContext.request.contextPath}/images/khalti.png" alt="Khalti">
+          <img src="${pageContext.request.contextPath}/images/Khalti.png" alt="Khalti">
           </div>
           <div>
             <div class="pay-label">Khalti</div>
@@ -157,7 +164,7 @@
     </form>
   </div>
 
-  <!-- ORDER SUMMARY SIDE -->
+  <%-- ORDER SUMMARY --%>
   <div class="checkout-summary">
     <div class="os-title">Your order</div>
 
@@ -178,17 +185,17 @@
       <%-- Static sample items for UI Milestone --%>
       <c:otherwise>
         <div class="os-item">
-          <div class="os-img" style="background:#EAF3DE;">    <img src="${pageContext.request.contextPath}/images/il_570xN.6426055539_90y2.jpg" alt="Silver Needle White Tea"></div>
+          <div class="os-img" style="background:#EAF3DE;">    <img src="${pageContext.request.contextPath}/images/ilamblacktea.jpg" alt="Ilam First Flush Tea"></div>
           <div class="os-name">Illam First Flush<br><span class="os-qty">&times; 2</span></div>
           <div class="os-price">Rs 1,700</div>
         </div>
         <div class="os-item">
-          <div class="os-img" style="background:#FAEEDA;">    <img src="${pageContext.request.contextPath}/images/9a5609c0471d2c0906e97d04a7239936.jpg" alt="Silver Needle White Tea"></div>
+          <div class="os-img" style="background:#FAEEDA;">    <img src="${pageContext.request.contextPath}/images/silverneedle.jpg" alt="Silver Needle White Tea"></div>
           <div class="os-name">Silver Needle White<br><span class="os-qty">&times; 1</span></div>
           <div class="os-price">Rs 1,200</div>
         </div>
         <div class="os-item">
-          <div class="os-img" style="background:#E8F0EB;">    <img src="${pageContext.request.contextPath}/images/Picsart_26-04-14_15-39-49-366.jpg" alt="Silver Needle White Tea"></div>
+          <div class="os-img" style="background:#E8F0EB;">    <img src="${pageContext.request.contextPath}/images/himalayan.jpg" alt="Himalayan Herbal Blend Tea"></div>
           <div class="os-name">Himalayan Herbal Blend<br><span class="os-qty">&times; 1</span></div>
           <div class="os-price">Rs 650</div>
         </div>
@@ -210,8 +217,8 @@
        style="width:20px; height:20px; object-fit:contain;">
   Your payment info is always secure
 </div>
-</div><!-- /checkout-summary -->
-  </div><!-- /checkout-layout -->
+</div>
+  </div>
 
 <script>
   function selectAddress(card, id) {

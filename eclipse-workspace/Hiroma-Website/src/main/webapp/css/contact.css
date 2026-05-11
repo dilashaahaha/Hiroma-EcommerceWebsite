@@ -1,0 +1,425 @@
+@charset "UTF-8";
+
+
+:root {
+    --dark-green: #1e3a2f;
+    --cream: #f5f0e8;
+    --cream-light: #faf7f2;
+    --accent-gold: #b8963e;
+    --text-dark: #1a1a1a;
+    --text-muted: #666;
+    --border: #ddd5c4;
+    --white: #ffffff;
+    --font-serif: Georgia, 'Times New Roman', serif;
+    --font-sans: 'Trebuchet MS', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ---------- Reset & Base ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--cream-light);
+    color: var(--text-dark);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* =============================================
+   NAVBAR
+   ============================================= */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 60px;
+    background-color: var(--cream-light);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-logo {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: var(--text-dark);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+    color: var(--accent-gold);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.nav-account {
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--text-dark);
+}
+
+.nav-cart {
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 1px;
+    background-color: var(--dark-green);
+    color: var(--white);
+    padding: 8px 16px;
+}
+
+/* =============================================
+   HERO BANNER
+   ============================================= */
+.hero {
+    background-color: var(--dark-green);
+    color: var(--white);
+    text-align: center;
+    padding: 70px 40px;
+}
+
+.hero-title {
+    font-family: var(--font-serif);
+    font-size: 48px;
+    font-weight: normal;
+    line-height: 1.25;
+    margin-bottom: 16px;
+}
+
+.hero-title .accent {
+    color: var(--accent-gold);
+    font-style: italic;
+}
+
+.hero-sub {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* =============================================
+   MAIN LAYOUT
+   ============================================= */
+.contact-main {
+    display: flex;
+    gap: 40px;
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 0 40px;
+    align-items: flex-start;
+}
+
+/* =============================================
+   LEFT — CONTACT INFO
+   ============================================= */
+.contact-info {
+    flex: 0 0 340px;
+}
+
+.section-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+
+.info-heading {
+    font-family: var(--font-serif);
+    font-size: 26px;
+    font-weight: normal;
+    margin-bottom: 14px;
+    color: var(--text-dark);
+}
+
+.info-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+    line-height: 1.7;
+}
+
+.info-block {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.info-icon {
+    width: 36px;
+    height: 36px;
+    background-color: var(--dark-green);
+    flex-shrink: 0;
+    border-radius: 2px;
+}
+
+.info-label {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.info-block p {
+    font-size: 13px;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* Support Hours Box */
+.support-hours {
+    background-color: var(--dark-green);
+    color: var(--white);
+    padding: 20px 24px;
+    margin-top: 30px;
+    border-radius: 2px;
+}
+
+.hours-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 14px;
+}
+
+.hours-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.hours-row:last-child {
+    border-bottom: none;
+}
+
+/* =============================================
+   RIGHT — CONTACT FORM
+   ============================================= */
+.contact-form-wrapper {
+    flex: 1;
+    background-color: var(--white);
+    border: 1px solid var(--border);
+    padding: 36px 40px;
+}
+
+.form-heading {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: normal;
+    margin-bottom: 28px;
+    color: var(--text-dark);
+}
+
+/* Topic Grid */
+.topic-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 8px;
+    margin-bottom: 24px;
+}
+
+.topic-btn {
+    padding: 10px 14px;
+    background-color: var(--cream);
+    border: 1px solid var(--border);
+    color: var(--text-dark);
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s;
+    font-family: var(--font-sans);
+}
+
+.topic-btn:hover {
+    background-color: var(--border);
+}
+
+.topic-btn.active {
+    background-color: var(--dark-green);
+    color: var(--white);
+    border-color: var(--dark-green);
+}
+
+/* Form Rows */
+.form-row {
+    display: flex;
+    gap: 16px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+/* Inputs & Textarea */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    background-color: var(--cream-light);
+    font-size: 13px;
+    color: var(--text-dark);
+    font-family: var(--font-sans);
+    outline: none;
+    transition: border-color 0.2s;
+    border-radius: 1px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--dark-green);
+    background-color: var(--white);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #bbb;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
+/* Submit Button */
+.btn-submit {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--dark-green);
+    color: var(--white);
+    border: none;
+    font-size: 13px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    transition: background-color 0.2s;
+    margin-top: 8px;
+}
+
+.btn-submit:hover {
+    background-color: #15281f;
+}
+
+.form-note {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 10px;
+    letter-spacing: 0.3px;
+}
+
+/* =============================================
+   RESPONSIVE — Flexbox Media Queries
+   ============================================= */
+@media (max-width: 900px) {
+    .contact-main {
+        flex-direction: column;
+        padding: 0 20px;
+    }
+
+    .contact-info {
+        flex: unset;
+        width: 100%;
+    }
+
+    .contact-form-wrapper {
+        width: 100%;
+    }
+
+    .hero-title {
+        font-size: 34px;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 14px 20px;
+        gap: 10px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .topic-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .contact-form-wrapper {
+        padding: 24px 20px;
+    }
+
+    .hero {
+        padding: 50px 20px;
+    }
+
+    .hero-title {
+        font-size: 28px;
+    }
+}

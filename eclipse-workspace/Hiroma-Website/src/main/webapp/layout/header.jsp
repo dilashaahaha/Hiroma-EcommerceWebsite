@@ -1,59 +1,87 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page isELIgnored="false" %>
-<%-- 
-    header.jsp – Shared site header / navbar
-    Include on every page with: <%@ include file="/layout/header.jsp" %>
+<%--
+    header.jsp
+    Location: src/main/webapp/layout/header.jsp
+    Author: M1
+    Description: Navigation bar included at the top of every page.
+                 Shows different links depending on whether user is logged in.
+                 Import this into other JSP files using:
+                 <%@ include file="/layout/header.jsp" %>
 --%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>H/ROMA – Pure Himalayan Teas</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/global.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css">
-</head>
-<body>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="com.hiroma.model.User" %>
+<%
+    // Get the logged-in user from session (null if not logged in)
+    User currentUser = (User) session.getAttribute("loggedInUser");
 
-<!-- ===== NAVBAR ===== -->
-<header class="navbar">
-    <div class="container flex-between">
+    // Get cart count from session to show the badge number
+    Integer cartCount = (Integer) session.getAttribute("cartCount");
+    if (cartCount == null) cartCount = 0;
 
-        <!-- Brand Logo -->
-        <a href="${pageContext.request.contextPath}/user/home.jsp" class="navbar-brand">
-            H<span class="brand-slash">/</span>ROMA
-        </a>
+    // Check if there is a one-time flash message to show
+    String flashMsg = (String) session.getAttribute("flashMessage");
+    if (flashMsg != null) {
+        session.removeAttribute("flashMessage"); // remove so it only shows once
+    }
 
-        <!-- Nav Links -->
-        <nav class="nav-links">
-            <a href="${pageContext.request.contextPath}/user/home.jsp"
-               class="nav-link ${currentPage == 'shop' ? 'active' : ''}">SHOP</a>
-            <a href="${pageContext.request.contextPath}/user/home.jsp?category=all"
-               class="nav-link ${currentPage == 'collections' ? 'active' : ''}">COLLECTIONS</a>
-            <a href="#" class="nav-link">ABOUT US</a>
-            <a href="#" class="nav-link">BRANDS</a>
-            <a href="#" class="nav-link">CONTACT US</a>
-        </nav>
+    String ctx = request.getContextPath();
+%>
 
-        <!-- Right Side: Account + Cart -->
-        <div class="nav-right">
-            <%
-                Object user = session.getAttribute("user");
-                if (user != null) {
-            %>
-                <a href="${pageContext.request.contextPath}/user/profile.jsp" class="nav-account">ACCOUNT</a>
-            <%  } else { %>
-                <a href="${pageContext.request.contextPath}/authentication/login.jsp" class="nav-account">ACCOUNT</a>
-            <%  } %>
+<%-- Link global CSS if not already linked by the page --%>
+<link rel="stylesheet" href="<%= ctx %>/css/global.css">
+<link rel="stylesheet" href="<%= ctx %>/css/header.css">
 
-            <a href="${pageContext.request.contextPath}/user/cart.jsp" class="nav-cart">
-                CART
-                <%
-                    java.util.List<?> cartItems = (java.util.List<?>) session.getAttribute("cart");
-                    int cartCount = (cartItems != null) ? cartItems.size() : 0;
-                %>
-                (<%= cartCount %>)
+<!-- ===== NAVIGATION BAR ===== -->
+<nav class="navbar">
+
+    <!-- Left: Logo -->
+    <a class="nav-logo" href="<%= ctx %>/home">H<span>i</span>roma</a>
+
+    <!-- Middle: Page links -->
+    <ul class="nav-links">
+        <li><a href="<%= ctx %>/home">Shop</a></li>
+        <li><a href="<%= ctx %>/home?categoryId=1">Green Tea</a></li>
+        <li><a href="<%= ctx %>/home?categoryId=2">Black Tea</a></li>
+        <li><a href="<%= ctx %>/about.jsp">Our Story</a></li>
+        <li><a href="<%= ctx %>/contact">Contact</a></li>
+    </ul>
+
+    <!-- Right: Account + Cart -->
+    <div class="nav-right">
+
+        <%-- If the user is logged in, show their name + logout --%>
+        <% if (currentUser != null) { %>
+
+            <%-- Admin gets a special link to the admin panel --%>
+			<% if (currentUser != null && currentUser.isAdmin()) { %>
+    		<a href="<%= ctx %>/admin/dashboard" class="nav-admin-btn">Admin Panel</a>
+			<% } %>
+
+            <a href="<%= ctx %>/orders" class="nav-icon-link" title="My Orders">&#128230;</a>
+            <a href="<%= ctx %>/profile" class="nav-icon-link" title="My Account">&#128100;</a>
+
+            <!-- Cart icon with item count badge -->
+            <a href="<%= ctx %>/cart" class="nav-cart" title="Cart">
+                &#128722;
+                <% if (cartCount > 0) { %>
+                    <span class="cart-badge"><%= cartCount %></span>
+                <% } %>
             </a>
-        </div>
+
+            <a href="<%= ctx %>/logout" class="nav-btn-outline">Sign out</a>
+
+        <%-- If NOT logged in, show sign in button --%>
+        <% } else { %>
+
+            <a href="<%= ctx %>/cart" class="nav-cart" title="Cart">&#128722;</a>
+            <a href="<%= ctx %>/authentication/login.jsp" class="nav-btn">Sign in</a>
+
+        <% } %>
     </div>
-</header>
+</nav>
+
+<%-- Flash message bar (appears once after actions like "Added to cart") --%>
+<% if (flashMsg != null) { %>
+    <div class="flash-bar">
+        <%= flashMsg %>
+    </div>
+<% } %>

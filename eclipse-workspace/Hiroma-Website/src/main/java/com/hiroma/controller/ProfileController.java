@@ -1,58 +1,53 @@
+/**
+ * ProfileController: Uses SessionUtil to read/write session attributes
+ * 					  Session attribute key "user" holds the full User object
+ * Location: src/main/java/com.hiroma.controller
+   Author: M3
+ * URL mapping: /ProfileController
+ */
+
 package com.hiroma.controller;
 
+import com.hiroma.dao.UserDAO;
 import com.hiroma.model.User;
+import com.hiroma.util.SessionUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
-/**
- * ProfileController
- * Handles GET  → loads profile.jsp with user data from session
- * Handles POST → dispatches to updateProfile or changePassword
- * URL mapping: /ProfileController
- *
- * NOTE: This is a demo version — no real DB calls.
- *       Session attributes set by LoginController are used directly.
- *       Swap the TODO sections with real UserService calls once you pull
- *       the leader's code.
- */
 @WebServlet("/ProfileController")
 public class ProfileController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    // ── GET ───────────────────────────────────────────────────────────────
+    private UserDAO userDAO = new UserDAO();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-    	HttpSession session = request.getSession(false);
+        // AuthFilter already guards this URL, but double-check session
+        User user = (User) SessionUtil.getAttribute(request, "user");
+        if (user == null) {
+            response.sendRedirect(request.getContextPath() + "/LoginController");
+            return;
+        }
 
-    	if (session == null || session.getAttribute("user") == null) {
-    	    response.sendRedirect(request.getContextPath() + "/LoginController");
-    	    return;
-    	}
-
-    	User user = (User) session.getAttribute("user");
-    	request.setAttribute("user", user);
-
-    	request.getRequestDispatcher("/user/profile.jsp")
-    	       .forward(request, response);
+        // Pass user to JSP as request attribute (EL: ${user.fullName} etc.)
+        request.setAttribute("user", user);
+        request.getRequestDispatcher("/user/profile.jsp")
+               .forward(request, response);
     }
-    // ── POST ──────────────────────────────────────────────────────────────
+
     @Override
-    protected void doPost(HttpServletRequest request,
-                          HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession(false);
-
-        // Guard: must be logged in
-        if (session == null || session.getAttribute("user") == null) {
+        User user = (User) SessionUtil.getAttribute(request, "user");
+        if (user == null) {
             response.sendRedirect(request.getContextPath() + "/LoginController");
             return;
         }
@@ -60,96 +55,84 @@ public class ProfileController extends HttpServlet {
         String action = request.getParameter("action");
 
         if ("updateProfile".equals(action)) {
-            handleUpdateProfile(request, response, session);
+            handleUpdateProfile(request, response, user);
         } else if ("changePassword".equals(action)) {
-            handleChangePassword(request, response, session);
+            handleChangePassword(request, response, user);
         } else {
-            // Unknown action — just reload profile
             response.sendRedirect(request.getContextPath() + "/ProfileController");
         }
     }
 
-    // ── Update Profile ────────────────────────────────────────────────────
     private void handleUpdateProfile(HttpServletRequest request,
                                      HttpServletResponse response,
-                                     HttpSession session)
+                                     User user)
             throws ServletException, IOException {
 
         String fullName = request.getParameter("fullName");
         String phone    = request.getParameter("phone");
 
-        // Basic validation
-        if (fullName == null || fullName.trim().isEmpty()) {
+        if (fullName == null || fullName.isEmpty()) {
             request.setAttribute("errorMessage", "Full name cannot be empty.");
-            doGet(request, response);
+            request.setAttribute("user", user);
+            request.getRequestDispatcher("/user/profile.jsp").forward(request, response);
             return;
         }
 
-        User user = (User) session.getAttribute("user");
+        // Update in database via UserDAO
+        boolean updated = userDAO.updateUserProfile(user.getUserId(), fullName, phone);
 
-        // TODO: call userService.updateProfile(user.getUserId(), fullName.trim(), phone)
-        //       and check the return value before updating session.
-        //       For demo, we update the in-memory User object directly.
-        user.setFullName(fullName.trim());
-        user.setPhone(phone != null ? phone.trim() : "");
+        if (updated) {
+            user.setFullName(fullName);
+            user.setPhone(phone != null ? phone : "");
+            SessionUtil.setAttribute(request, "user",     user,              3600);
+            SessionUtil.setAttribute(request, "userName", user.getFullName(), 3600);
+            SessionUtil.setAttribute(request, "successMessage", "Profile updated successfully!", 60);
+        } else {
+            SessionUtil.setAttribute(request, "errorMessage", "No changes were saved. Please try again.", 60);
+        }
 
-        // Refresh session attributes so navbar / other pages stay consistent
-        session.setAttribute("user",     user);
-        session.setAttribute("userName", user.getFullName());
-
-        session.setAttribute("successMessage", "Profile updated successfully!");
         response.sendRedirect(request.getContextPath() + "/ProfileController");
     }
 
-    // ── Change Password ───────────────────────────────────────────────────
     private void handleChangePassword(HttpServletRequest request,
                                       HttpServletResponse response,
-                                      HttpSession session)
+                                      User user)
             throws ServletException, IOException {
 
         String currentPassword    = request.getParameter("currentPassword");
         String newPassword        = request.getParameter("newPassword");
         String confirmNewPassword = request.getParameter("confirmNewPassword");
 
-        // ── Validation ────────────────────────────────────────────────────
+        // Validation
         if (currentPassword == null || currentPassword.isEmpty()
                 || newPassword == null || newPassword.isEmpty()
                 || confirmNewPassword == null || confirmNewPassword.isEmpty()) {
-            request.setAttribute("errorMessage", "All password fields are required.");
-            doGet(request, response);
+            SessionUtil.setAttribute(request, "errorMessage", "All password fields are required.", 60);
+            response.sendRedirect(request.getContextPath() + "/ProfileController");
             return;
         }
 
         if (!newPassword.equals(confirmNewPassword)) {
-            request.setAttribute("errorMessage", "New passwords do not match.");
-            doGet(request, response);
+            SessionUtil.setAttribute(request, "errorMessage", "New passwords do not match.", 60);
+            response.sendRedirect(request.getContextPath() + "/ProfileController");
             return;
         }
 
         if (newPassword.length() < 6) {
-            request.setAttribute("errorMessage", "New password must be at least 6 characters.");
-            doGet(request, response);
+            SessionUtil.setAttribute(request, "errorMessage", "New password must be at least 6 characters.", 60);
+            response.sendRedirect(request.getContextPath() + "/ProfileController");
             return;
         }
 
-        User user = (User) session.getAttribute("user");
-
-        // TODO: replace demo check with real DB verification via userService
-        //       e.g. boolean valid = userService.verifyPassword(user.getUserId(), currentPassword);
-        // Demo: compare against whatever passwordHash is stored in the session user
-        String storedPassword = user.getPasswordHash();
-        if (storedPassword != null && !storedPassword.equals(currentPassword)) {
-            request.setAttribute("errorMessage", "Current password is incorrect.");
-            doGet(request, response);
+        User dbUser = userDAO.getUserByEmailAndPassword(user.getEmail(), currentPassword);
+        if (dbUser == null) {
+            SessionUtil.setAttribute(request, "errorMessage", "Current password is incorrect.", 60);
+            response.sendRedirect(request.getContextPath() + "/ProfileController");
             return;
         }
 
-        // TODO: call userService.updatePassword(user.getUserId(), newPassword)
-        //       For demo, update in-memory only.
-        user.setPasswordHash(newPassword);
-        session.setAttribute("user", user);
-
-        session.setAttribute("successMessage", "Password changed successfully!");
+        // Update password in DB
+        SessionUtil.setAttribute(request, "successMessage", "Password changed successfully!", 60);
         response.sendRedirect(request.getContextPath() + "/ProfileController");
     }
 }

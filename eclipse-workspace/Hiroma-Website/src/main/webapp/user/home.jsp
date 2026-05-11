@@ -1,3 +1,11 @@
+<%--
+    home.jsp
+    Location: src/main/webapp/user/home.jsp
+    Author: M3
+    Description: Main landing page of the website.
+                 Import this into other JSP files using:
+                 <%@ include file="/user/home.jsp" --%>
+--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -13,7 +21,7 @@
 </head>
 <body>
 
-<!--NAVBAR -->
+<%-- NAVBAR --%>
 <header class="navbar">
     <div class="container flex-between">
 
@@ -47,7 +55,7 @@
 </header>
 
 
-<!-- HERO SECTION -->
+<%-- HERO SECTION --%>
 <section class="hero">
     <div class="container">
         <div class="hero-inner">
@@ -67,7 +75,7 @@
 
             <div class="hero-image">
                 <div class="hero-img-placeholder">
-  <img src="${pageContext.request.contextPath}/images/WhatsApp Image 2026-04-15 at 9.25.01 AM.jpeg" 
+  <img src="${pageContext.request.contextPath}/images/circle.jpeg" 
        alt="Himalayan Tea" class="hero-img-circle">
 </div>
                 <div class="hero-tags">
@@ -82,7 +90,7 @@
 </section>
 
 
-<!-- PRODUCT LIST SECTION -->
+<%-- PRODUCT LIST SECTION --%>
 <section class="shop-section" id="shop">
     <div class="container">
 
@@ -100,7 +108,7 @@
             <c:remove var="errorMessage" scope="session"/>
         </c:if>
 
-        <!-- Search Bar -->
+        <%-- Search Bar --%>
         <div class="search-row">
             <form class="search-form" method="GET"
                   action="${pageContext.request.contextPath}/user/home.jsp">
@@ -115,7 +123,7 @@
             </form>
         </div>
 
-        <!-- Category Filter Tabs -->
+        <%-- CATEGORY FILTER TABS --%>
         <c:set var="activeCategory" value="${empty param.category ? 'all' : param.category}"/>
 
         <div class="filter-tabs">
@@ -135,7 +143,7 @@
                class="filter-tab ${activeCategory == 'sleep' ? 'active' : ''}">SLEEP</a>
         </div>
 
-        <!-- Product Grid -->
+        <%-- PRODUCT GRID --%>
         <div class="products-grid">
 
             <c:choose>
@@ -167,10 +175,10 @@
                 </c:when>
 
                 <c:otherwise>
-                    <!-- Card 1: Tulsi Green Tea -->
+                    <%-- CARDS --%>>
 <div class="product-card">
     <div class="product-img-wrap">
-        <img src="${pageContext.request.contextPath}/images/WhatsApp Image 2026-04-15 at 9.23.41 AM.jpeg" alt="Tulsi Green Tea">
+        <img src="${pageContext.request.contextPath}/images/tulsi.jpeg" alt="Tulsi Green Tea">
         <span class="card-sale-tag">5 OFF</span>
     </div>
 
@@ -190,10 +198,12 @@
         </div>
     </div>
 </div>
-                    <!-- Card 2: Lavender Sleep Blend -->
+                    
+                    
+                    
  <div class="product-card">
     <div class="product-img-wrap">
-        <img src="${pageContext.request.contextPath}/images/WhatsApp Image 2026-04-15 at 11.00.04 AM.jpeg" alt="Lavender Sleep Blend">
+        <img src="${pageContext.request.contextPath}/images/lavender.jpeg" alt="Lavender Sleep Blend">
     </div>
     <div class="product-body">
         <p class="product-origin">NEPAL BLENDS</p>
@@ -212,10 +222,11 @@
     </div>
 </div>
 
-                    <!-- Card 3: Hibiscus Tea Blend -->
+
+
                     <div class="product-card">
                         <div class="product-img-wrap">
-                            <img src="${pageContext.request.contextPath}/images/WhatsApp Image 2026-04-15 at 11.00.07 AM.jpeg" alt="Hibiscus Tea Blend">
+                            <img src="${pageContext.request.contextPath}/images/hibiscus.jpeg" alt="Hibiscus Tea Blend">
                         </div>
                         <div class="product-body">
                             <p class="product-origin">NEPAL BLENDS</p>
@@ -234,10 +245,12 @@
                         </div>
                     </div>
 
-                    <!-- Card 4: Chamomile Dream -->
+
+
+
                     <div class="product-card">
                         <div class="product-img-wrap">
-                            <img src="${pageContext.request.contextPath}/images/WhatsApp Image 2026-04-15 at 11.00.04 AM (1).jpeg" alt="Chamomile Dream">
+                            <img src="${pageContext.request.contextPath}/images/chamomile.jpeg" alt="Chamomile Dream">
                         </div>
                         <div class="product-body">
                             <p class="product-origin">NEPAL BLENDS</p>
@@ -256,10 +269,12 @@
                         </div>
                     </div>
 
-                    <!-- Card 5: Organic Green Tea -->
+
+
+
                     <div class="product-card">
                         <div class="product-img-wrap">
-                            <img src="${pageContext.request.contextPath}/images/WhatsApp Image 2026-04-15 at 11.00.05 AM.jpeg" alt="Organic Green Tea">
+                            <img src="${pageContext.request.contextPath}/images/green-tea.jpeg" alt="Organic Green Tea">
                         </div>
                         <div class="product-body">
                             <p class="product-origin">HIMALAYAN HERBS</p>
@@ -280,14 +295,12 @@
                 </c:otherwise>
             </c:choose>
 
-        </div><!-- /products-grid -->
-    </div><!-- /container -->
+        </div>
+    </div>
 </section>
 
 
-<!-- ===================================================
-     TAGLINE / STATS STRIP
-     =================================================== -->
+<%-- TAGLINE --%>
 <section class="tagline-strip">
     <div class="container">
         <div class="tagline-inner">
@@ -314,9 +327,7 @@
 </section>
 
 
-<!-- ===================================================
-     FOOTER
-     =================================================== -->
+<%-- FOOTER --%>>
 <footer class="footer">
     <div class="container">
         <div class="footer-grid">

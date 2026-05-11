@@ -1,7 +1,15 @@
+<%--
+    product.jsp
+    Location: src/main/webapp/user/product.jsp
+    Author: M3
+    Description: List of products with category filter.
+                 Import this into other JSP files using:
+                 <%@ include file="/user/product.jsp" --%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%-- Set defaults for category and sort if not provided --%>
+<%-- CATEOGORY --%>
 <c:if test="${empty param.category}"><c:set var="activeCategory" value="all"/></c:if>
 <c:if test="${not empty param.category}"><c:set var="activeCategory" value="${param.category}"/></c:if>
 <c:if test="${empty param.sort}"><c:set var="activeSort" value="featured"/></c:if>
@@ -18,7 +26,7 @@
 </head>
 <body>
 
-<!-- NAVBAR -->
+<%-- NAVBAR --%>
 <nav class="site-nav">
   <a href="${pageContext.request.contextPath}/user/home.jsp" class="nav-logo">H<span>i</span>roma</a>
   <div class="nav-links">
@@ -46,7 +54,7 @@
   </div>
 </nav>
 
-<!-- PAGE HERO -->
+<%-- HERO PAGE --%>
 <section class="page-hero">
   <div class="hero-bg"></div>
   <div class="hero-inner">
@@ -72,7 +80,7 @@
   </div>
 </section>
 
-<!-- MARQUEE -->
+<%-- MARQUEE --%>
 <div class="marquee-strip">
   <div class="marquee-inner">
     <span class="marquee-item">Ilam First Flush<span class="marquee-dot"></span></span>
@@ -84,10 +92,9 @@
   </div>
 </div>
 
-<!-- SHOP LAYOUT -->
+<%-- LAYOUT OF SHOP --%>
 <div class="shop-layout">
 
-  <!-- SIDEBAR -->
   <aside class="sidebar">
 
     <c:if test="${not empty sessionScope.successMessage}">
@@ -99,7 +106,7 @@
       <c:remove var="errorMessage" scope="session"/>
     </c:if>
 
-    <!-- Category Filter -->
+    <%-- CATEGORY FILTER --%>
     <div class="filter-section">
       <div class="filter-title">
         Category
@@ -139,7 +146,7 @@
       </div>
     </div>
 
-    <!-- Price Range -->
+    <%-- PRICE RANGE --%>
     <div class="filter-section">
       <div class="filter-title">Price Range</div>
       <div class="price-range">
@@ -152,7 +159,7 @@
       </div>
     </div>
 
-    <!-- Origin District -->
+    <%-- ORIGIN DISTRICT --%>
     <div class="filter-section">
       <div class="filter-title">Origin District</div>
       <div class="district-tags">
@@ -171,7 +178,7 @@
       </div>
     </div>
 
-    <!-- Brand -->
+    <%-- BRAND --%>
     <div class="filter-section">
       <div class="filter-title">Brand</div>
       <div class="filter-options">
@@ -185,7 +192,7 @@
     <button class="clear-filters" onclick="clearAllFilters()">Clear All Filters</button>
   </aside>
 
-  <!-- PRODUCT AREA -->
+  <%-- PRODUCT AREA --%>
   <div class="product-area">
 
     <!-- Category Pills -->
@@ -212,7 +219,7 @@
       </a>
     </div>
 
-    <!-- Toolbar -->
+    <%-- TOOLBAR --%>
     <div class="toolbar">
       <div class="toolbar-left">
         <span class="results-count">Showing <strong>6</strong> of 46 products</span>
@@ -233,10 +240,10 @@
       </div>
     </div>
 
-    <!-- PRODUCT GRID -->
+    <%-- PRODUCT GRID --%>
     <div class="products-grid" id="productsGrid">
 
-      <%-- Dynamic: rendered by controller when "products" attribute is set --%>
+     
       <c:choose>
         <c:when test="${not empty requestScope.products}">
           <c:forEach var="p" items="${requestScope.products}">
@@ -268,12 +275,11 @@
           </c:forEach>
         </c:when>
 
-        <%-- Static sample cards for UI Milestone --%>
         <c:otherwise>
           <!-- Card 1 -->
           <div class="product-card">
             <div class="card-img">
-            <img src="${pageContext.request.contextPath}/images/il_570xN.6426055539_90y2.jpg" alt="Illam First Flush Darjeeling">
+            <img src="${pageContext.request.contextPath}/images/ilamblacktea.jpg" alt="Illam First Flush Darjeeling">
               <div class="card-overlay-deco">Tea</div>
               <div class="card-badges"><span class="badge badge-bestseller">Best Seller</span><span class="badge badge-organic">Organic</span></div>
               <button class="wishlist-btn" onclick="toggleWishlist(this,1)">&#9825;</button>
@@ -295,10 +301,12 @@
               <div class="card-footer"><div><span class="card-price">Rs 850</span> <span class="card-price-unit">/ 100g</span></div><div class="card-weight-tag">100g</div></div>
             </div>
           </div>
-         <!-- Card 2 – FIXED: removed duplicate card-img-emoji inside card-img -->
+ 
+ 
+ 
           <div class="product-card">
             <div class="card-img">
-              <img src="${pageContext.request.contextPath}/images/9a5609c0471d2c0906e97d04a7239936.jpg" alt="Silver Needle White Tea">
+              <img src="${pageContext.request.contextPath}/images/silverneedle.jpg" alt="Silver Needle White Tea">
               <div class="card-overlay-deco">White</div>
               <div class="card-badges">
                 <span class="badge badge-new">New Arrival</span>
@@ -327,10 +335,10 @@
             </div>
           </div>
 
-          <!-- Card 3 -->
+
           <div class="product-card">
             <div class="card-img">
-            <img src="${pageContext.request.contextPath}/images/Picsart_26-04-14_15-39-49-366.jpg" alt="Himalayan Herbal Blend">
+            <img src="${pageContext.request.contextPath}/images/himalayan.jpg" alt="Himalayan Herbal Blend">
               <div class="card-overlay-deco">Herbal</div>
               <div class="card-badges"><span class="badge badge-organic">Organic</span></div>
               <button class="wishlist-btn" onclick="toggleWishlist(this,3)">&#9825;</button>
@@ -352,10 +360,12 @@
               <div class="card-footer"><div><span class="card-price">Rs 650</span> <span class="card-price-unit">/ 100g</span></div><div class="card-weight-tag">100g</div></div>
             </div>
           </div>
-          <!-- Card 4 -->
+  
+  
+  
           <div class="product-card">
             <div class="card-img">
-            <img src="${pageContext.request.contextPath}/images/71wJD5e7ML.jpg" alt="Moshi Morning Black">
+            <img src="${pageContext.request.contextPath}/images/morningblack.jpg" alt="Moshi Morning Black">
               <div class="card-img-emoji">&#9749;</div>
               <div class="card-overlay-deco">Black</div>
               <div class="card-badges"><span class="badge badge-bestseller">Best Seller</span></div>
@@ -378,10 +388,12 @@
               <div class="card-footer"><div><span class="card-price">Rs 720</span> <span class="card-price-unit">/ 100g</span></div><div class="card-weight-tag">100g</div></div>
             </div>
           </div>
-          <!-- Card 5 – FIXED: img is now inside card-img div, not a direct child of product-card -->
+
+
+
           <div class="product-card">
             <div class="card-img">
-              <img src="${pageContext.request.contextPath}/images/OrganicGreentea1.png" alt="Organic Green Tea">
+              <img src="${pageContext.request.contextPath}/images/organicgreentea.png" alt="Organic Green Tea">
               <div class="card-overlay-deco">Green</div>
               <div class="card-badges">
                 <span class="badge badge-new">New</span>
@@ -410,10 +422,12 @@
             </div>
           </div>
 
-         <!-- Card 6 – FIXED: removed duplicate nested product-card div -->
+
+
+
           <div class="product-card">
             <div class="card-img">
-              <img src="${pageContext.request.contextPath}/images/b8a9c1aca4b03118e36b75331d03f6dc.jpg" alt="Golden Oolong Tea">
+              <img src="${pageContext.request.contextPath}/images/oolong.jpg" alt="Golden Oolong Tea">
               <div class="card-overlay-deco">Oolong</div>
               <div class="card-badges">
                 <span class="badge badge-organic">Organic</span>
@@ -443,9 +457,9 @@
         </c:otherwise>
       </c:choose>
 
-    </div><!-- /products-grid -->
+    </div>
 
-    <!-- Load More -->
+    <%-- LOAD MORE --%>
     <div class="load-more-section">
       <span class="load-more-text">Showing 6 of 46 products</span>
       <div class="progress-bar"><div class="progress-fill"></div></div>
@@ -455,7 +469,7 @@
       </form>
     </div>
 
-    <!-- CTA Banner -->
+    <%-- BANNER --%>
     <div class="cta-banner">
       <div class="cta-banner-bg"></div>
       <h2 class="cta-heading">Sell your tea<br>on <em>Hiroma</em></h2>
@@ -465,8 +479,8 @@
       </div>
     </div>
 
-  </div><!-- /product-area -->
-</div><!-- /shop-layout -->
+  </div>
+</div>
 
 <!-- FOOTER -->
 <footer class="site-footer">
@@ -537,3 +551,4 @@
 </script>
 </body>
 </html>
+

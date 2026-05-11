@@ -1,3 +1,11 @@
+<%--
+    productdetail.jsp
+    Location: src/main/webapp/user/productdetail.jsp
+    Author: M3
+    Description: Description of each product.
+                 Import this into other JSP files using:
+                 <%@ include file="/user/productdetail.jsp" --%>
+                 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ page import="com.hiroma.model.Product" %>
 <%
@@ -243,7 +251,7 @@
 </head>
 <body>
 
-<!-- NAVBAR -->
+<%-- NAVBAR --%>
 <nav>
   <a href="<%= ctx %>/user/home.jsp" class="nav-logo">H<span>i</span>roma</a>
   <div class="nav-links">
@@ -266,7 +274,7 @@
   </div>
 </nav>
 
-<!-- BREADCRUMB -->
+<%-- BREADCRUMB --%>
 <div class="breadcrumb">
   <a href="<%= ctx %>/user/home.jsp">Home</a>
   <span class="bc-sep">/</span>
@@ -275,19 +283,19 @@
   <span>Illam First Flush Darjeeling</span>
 </div>
 
-<!-- PRODUCT SECTION -->
+<%-- PRODCUT SECTION --%>
 <section class="product-section">
 
-  <!-- GALLERY -->
+  <%-- PRODUCT GALLERY --%>
   <div class="product-gallery">
     <div class="gallery-bg"></div>
     <div class="gallery-badge">Best Seller</div>
     <div class="gallery-main">
-    <img src="${pageContext.request.contextPath}/images/il_570xN.6426055539_90y2.jpg" alt="Silver Needle White Tea"></div>
+    <img src="${pageContext.request.contextPath}/images/silverneedle.jpg" alt="Silver Needle White Tea"></div>
     </div>
   </div>
 
-  <!-- INFO -->
+
   <div class="product-info">
     <div class="product-eyebrow">
       <span class="product-origin-tag">Illam, Koshi Province &middot; 1,200m</span>
@@ -343,7 +351,7 @@
 </section>
 
 
-<!-- TABS -->
+<%-- TABS --%>
 <section class="tabs-section">
   <div class="tabs-nav">
     <button class="tab active" onclick="showTab(this,'brew')">Brewing guide</button>
@@ -376,7 +384,7 @@
 </section>
 
 
-<!-- REVIEWS -->
+<%-- REVIEWS --%>>
 <section class="reviews-section">
   <div class="reviews-header">
     <div>
@@ -471,3 +479,5 @@
 </script>
 </body>
 </html>
+
+

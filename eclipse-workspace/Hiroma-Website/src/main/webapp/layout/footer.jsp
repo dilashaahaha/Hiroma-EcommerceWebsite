@@ -1,64 +1,75 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page isELIgnored="false" %>
 <%--
-    footer.jsp – Shared site footer
-    Include on every page with: <%@ include file="/layout/footer.jsp" %>
+    footer.jsp
+    Location: src/main/webapp/layout/footer.jsp
+    Author: M1
+    Description: Footer included at the bottom of every page.
+                 Import into other JSP files using:
+                 <%@ include file="/layout/footer.jsp" %>
 --%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<% String ctx = request.getContextPath(); %>
+
+<link rel="stylesheet" href="<%= ctx %>/css/footer.css">
 
 <!-- ===== FOOTER ===== -->
-<footer class="footer">
-    <div class="container">
-        <div class="footer-grid">
+<footer class="site-footer">
 
-            <!-- Brand Column -->
-            <div class="footer-brand-col">
-                <div class="footer-logo">H<span>/</span>ROMA</div>
-                <p class="footer-tagline">
-                    Pure herbal teas from the heart of the Himalayas.<br>
-                    Bringing Nepal's finest blends to your doorstep.
-                </p>
-            </div>
+    <!-- Top section: brand + 3 link columns -->
+    <div class="footer-top">
 
-            <!-- Shop Column -->
-            <div class="footer-col">
-                <h4 class="footer-col-title">SHOP</h4>
-                <ul class="footer-links">
-                    <li><a href="${pageContext.request.contextPath}/user/home.jsp?category=green">Green Tea</a></li>
-                    <li><a href="${pageContext.request.contextPath}/user/home.jsp?category=herbal">Herbal Blends</a></li>
-                    <li><a href="${pageContext.request.contextPath}/user/home.jsp?category=black">Black Tea</a></li>
-                    <li><a href="${pageContext.request.contextPath}/user/home.jsp?category=detox">Detox Teas</a></li>
-                </ul>
-            </div>
-
-            <!-- Account Column -->
-            <div class="footer-col">
-                <h4 class="footer-col-title">ACCOUNT</h4>
-                <ul class="footer-links">
-                    <li><a href="${pageContext.request.contextPath}/user/profile.jsp">My Profile</a></li>
-                    <li><a href="${pageContext.request.contextPath}/user/orders.jsp">My Orders</a></li>
-                    <li><a href="${pageContext.request.contextPath}/user/cart.jsp">My Cart</a></li>
-                    <li><a href="${pageContext.request.contextPath}/user/home.jsp?section=reviews">Reviews</a></li>
-                </ul>
-            </div>
-
-            <!-- Company Column -->
-            <div class="footer-col">
-                <h4 class="footer-col-title">COMPANY</h4>
-                <ul class="footer-links">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Our Farmers</a></li>
-                </ul>
-            </div>
-
+        <!-- Brand blurb -->
+        <div class="footer-brand">
+            <div class="footer-logo">H<span>i</span>roma</div>
+            <p class="footer-tagline">
+                Nepal's first dedicated marketplace for authentic,
+                organic Himalayan teas. From garden to cup.
+            </p>
         </div>
 
-        <div class="footer-bottom">
-            <p>&copy; 2025 Hiroma Tea. All rights reserved.</p>
-            <p class="footer-made">Made in <strong>Nepal</strong> &#9749;</p>
+        <!-- Shop links -->
+        <div class="footer-col">
+            <div class="footer-col-title">Shop</div>
+            <ul class="footer-links">
+                <li><a href="<%= ctx %>/home?categoryId=1">Green Teas</a></li>
+                <li><a href="<%= ctx %>/home?categoryId=2">Black Teas</a></li>
+                <li><a href="<%= ctx %>/home?categoryId=3">White Teas</a></li>
+                <li><a href="<%= ctx %>/home?categoryId=5">Herbal Blends</a></li>
+                <li><a href="<%= ctx %>/home?categoryId=6">Gift Sets</a></li>
+            </ul>
+        </div>
+
+        <!-- Company links -->
+        <div class="footer-col">
+            <div class="footer-col-title">Company</div>
+            <ul class="footer-links">
+                <li><a href="<%= ctx %>/about.jsp">Our Story</a></li>
+                <li><a href="<%= ctx %>/contact">Contact Us</a></li>
+            </ul>
+        </div>
+
+        <!-- Account links -->
+        <div class="footer-col">
+            <div class="footer-col-title">Account</div>
+            <ul class="footer-links">
+                <li><a href="<%= ctx %>/profile">My Profile</a></li>
+                <li><a href="<%= ctx %>/orders">My Orders</a></li>
+                <li><a href="<%= ctx %>/cart">My Cart</a></li>
+                <li><a href="<%= ctx %>/authentication/login.jsp">Sign In</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Bottom bar: copyright + social links -->
+    <div class="footer-bottom">
+        <div class="footer-copy">
+            &copy; 2026 Hiroma &middot; Himalayan Aroma &middot; Nepal
+        </div>
+        <div class="footer-socials">
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
         </div>
     </div>
-</footer>
 
-</body>
-</html>
+</footer>

@@ -1,5 +1,15 @@
+/**
+ * AuthFilter  –  Authentication Filter
+ * Protects /ProfileController and /LogoutController so only logged-in users can access them. 
+ * Unauthenticated requests are redirected to /LoginController.
+  * Location: src/main/java/com.hiroma.filter
+  * Author: M3
+  *   - Pattern: @WebFilter on specific protected URL patterns
+  */
+
 package com.hiroma.filter;
 
+import com.hiroma.util.SessionUtil;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
@@ -7,74 +17,47 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebFilter;
+import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
-/**
- * AuthFilter  –  Authentication Filter
- *
- * Protects all pages under /user/* and /admin/*
- * Public pages (login, register, home, products) are allowed through.
- */
-@WebFilter(urlPatterns = { "/user/*", "/admin/*", "/ProfileController" })
-public class AuthFilter implements Filter {
+@WebFilter(urlPatterns = { "/ProfileController", "/LogoutController", "/user/profile.jsp", "/user/home.jsp", "/user/cart.jsp", "/user/orders.jsp", "/user/checkout.jsp",
+		"/user/product.jsp", "/user/productdetail.jsp" })
+public class AuthFilter extends HttpFilter implements Filter {
 
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-        // Nothing to initialise
+    private static final long serialVersionUID = 1L;
+
+    public AuthFilter() {
+        super();
     }
 
     @Override
-    public void doFilter(ServletRequest servletRequest,
-                         ServletResponse servletResponse,
-                         FilterChain chain)
+    public void init(FilterConfig filterConfig) throws ServletException {
+        // Initialization logic
+    }
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
 
-        HttpServletRequest  request   = (HttpServletRequest)  servletRequest;
-        HttpServletResponse response  = (HttpServletResponse) servletResponse;
+        HttpServletRequest  httpRequest  = (HttpServletRequest)  request;
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-        String contextPath = request.getContextPath();
-        String path        = request.getRequestURI()
-                                    .substring(contextPath.length());
+        // Check if the session exists and contains the "user" login identifier
+        boolean isLoggedIn = SessionUtil.getAttribute(httpRequest, "user") != null;
 
-        // ── Public pages – allow through without login ────────────────────
-        if (path.equals("/user/home.jsp")
-                || path.equals("/user/login.jsp")
-                || path.equals("/user/register.jsp")
-                || path.startsWith("/user/product")) {
+        if (isLoggedIn) {
+            // If user is logged in, allow the request to proceed
             chain.doFilter(request, response);
-            return;
-        }
-
-        // ── Check session ─────────────────────────────────────────────────
-        HttpSession session = request.getSession(false);
-        boolean loggedIn    = session != null
-                              && session.getAttribute("user") != null;
-
-        if (loggedIn) {
-            // Admin-only pages
-            if (path.startsWith("/admin/")) {
-                String role = (String) session.getAttribute("userRole");
-                if (!"ADMIN".equalsIgnoreCase(role)) {
-                    response.sendRedirect(contextPath + "/user/home.jsp");
-                    return;
-                }
-            }
-            chain.doFilter(request, response);
-
         } else {
-            // Not logged in → redirect to login
-            HttpSession newSession = request.getSession(true);
-            newSession.setAttribute("redirectAfterLogin", request.getRequestURI());
-            newSession.setAttribute("errorMessage", "Please log in to access that page.");
-            response.sendRedirect(contextPath + "/LoginController");
+            // If user is not logged in, prevent caching and redirect to login
+            httpResponse.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+            httpResponse.sendRedirect(httpRequest.getContextPath() + "/LoginController");
         }
     }
 
     @Override
     public void destroy() {
-        // Nothing to clean up
     }
 }

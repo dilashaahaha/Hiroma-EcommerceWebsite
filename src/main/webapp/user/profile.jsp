@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
     <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,7 +86,7 @@
                     <li><a href="#" class="sidebar-link">&#9733; My reviews</a></li>
                 </ul>
             </div>
-            <a href="${pageContext.request.contextPath}/LogoutController" class="btn-signout">SIGN OUT</a>
+            <a href="${pageContext.request.contextPath}/logout" class="btn-signout">SIGN OUT</a>
         </aside>
 
         <!-- RIGHT CONTENT -->
@@ -140,3 +141,4 @@
 
 </body>
 </html>
+
