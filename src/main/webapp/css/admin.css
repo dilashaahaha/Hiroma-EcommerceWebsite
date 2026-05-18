@@ -1,0 +1,118 @@
+/* DASHBOARD SPECIFIC */
+.dash-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.dash-greeting {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--text-dark);
+}
+
+.dash-sub {
+    font-size: 0.75rem;
+    color: #999;
+    margin-top: 0.2rem;
+}
+
+.btn-add-product {
+    padding: 0.7rem 1.4rem;
+    background: var(--green-dark);
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    font-weight: 500;
+    border-radius: 3px;
+    transition: background 0.2s;
+}
+
+.btn-add-product:hover { background: var(--green-mid); }
+
+.stat-card-pending {
+    border-left: 3px solid var(--gold);
+}
+
+.stat-link {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.72rem;
+    color: var(--gold);
+    text-decoration: none;
+}
+
+.dash-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.dash-card {
+    background: #fff;
+    border: 1px solid #e8e3d8;
+    border-radius: 8px;
+    padding: 1.5rem;
+    overflow: hidden;
+}
+
+.dash-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.dash-card-header h3 {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.dash-card-header a {
+    font-size: 0.72rem;
+    color: var(--gold);
+    text-decoration: none;
+}
+
+/* CATEGORY BARS */
+.category-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.cat-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: #555;
+}
+
+.cat-bar-wrap {
+    background: #f0ece4;
+    border-radius: 10px;
+    height: 6px;
+    overflow: hidden;
+}
+
+.cat-bar {
+    height: 100%;
+    background: var(--green-dark);
+    border-radius: 10px;
+    max-width: 100%;
+}
+
+/* ORDER STATUS BADGES */
+.badge-pending    { background: #fff8e1; color: #b8860b; }
+.badge-processing { background: #e8f0fe; color: #1a56db; }
+.badge-shipped    { background: #e8f4fd; color: #0277bd; }
+.badge-delivered  { background: #eaf5ec; color: #2e7d32; }
+.badge-cancelled  { background: #fdecea; color: #c0392b; }
+
+@media (max-width: 900px) {
+    .dash-grid { grid-template-columns: 1fr; }
+}

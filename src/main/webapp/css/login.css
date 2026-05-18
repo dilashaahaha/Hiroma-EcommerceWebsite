@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Cormorant+Garamond:wght@300;400&family=Montserrat:wght@300;400;500&display=swap');
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --green-dark: #1a2e20;
+    --green-mid: #243d2a;
+    --cream: #f0ebe0;
+    --cream-dark: #e8e1d0;
+    --gold: #c9a84c;
+    --text-light: rgba(255,255,255,0.75);
+    --text-dark: #2a2a2a;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--cream);
+    height: 100vh;
+    overflow: hidden;
+}
+
+.page-wrapper {
+    display: flex;
+    height: 100vh;
+}
+
+/* LEFT PANEL */
+.left-panel {
+    width: 50%;
+    background: var(--green-dark);
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem;
+    position: relative;
+}
+
+.brand {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 1.1rem;
+    letter-spacing: 0.3em;
+    color: #fff;
+}
+
+.brand span {
+    color: var(--gold);
+}
+
+.left-content {
+    margin-top: auto;
+    margin-bottom: 4rem;
+}
+
+.label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+    font-weight: 400;
+}
+
+.headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 400;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
+}
+
+.headline em {
+    font-style: italic;
+    color: var(--gold);
+}
+
+.subtext {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    line-height: 1.7;
+    max-width: 280px;
+    font-weight: 300;
+}
+
+/* RIGHT PANEL */
+.right-panel {
+    width: 50%;
+    background: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem;
+}
+
+.form-wrapper {
+    width: 100%;
+    max-width: 360px;
+}
+
+.form-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    font-weight: 400;
+}
+
+.form-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: var(--text-dark);
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+
+.form-sub {
+    font-size: 0.78rem;
+    color: #777;
+    margin-bottom: 2rem;
+    font-weight: 300;
+}
+
+.form-sub a {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.form-sub a:hover {
+    text-decoration: underline;
+}
+
+.error-box {
+    background: #fdecea;
+    border-left: 3px solid #c0392b;
+    color: #c0392b;
+    font-size: 0.78rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.2rem;
+    border-radius: 2px;
+}
+
+.field-group {
+    margin-bottom: 1.2rem;
+}
+
+.field-group label {
+    display: block;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    color: #888;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.field-group input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.field-group input:focus {
+    border-color: var(--green-dark);
+}
+
+.field-group input::placeholder {
+    color: #bbb;
+    font-weight: 300;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 1rem;
+    background: var(--green-dark);
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background 0.2s;
+}
+
+.btn-submit:hover {
+    background: var(--green-mid);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .page-wrapper {
+        flex-direction: column;
+        overflow-y: auto;
+        height: auto;
+    }
+
+    .left-panel {
+        width: 100%;
+        min-height: 220px;
+        padding: 2rem;
+    }
+
+    .left-content {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .headline {
+        font-size: 2rem;
+    }
+
+    .right-panel {
+        width: 100%;
+        padding: 2rem;
+    }
+}

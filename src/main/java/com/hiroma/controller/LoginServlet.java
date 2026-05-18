@@ -1,53 +1,71 @@
 package com.hiroma.controller;
 
+import com.hiroma.model.UserModel;
+import com.hiroma.service.LoginService;
+import com.hiroma.util.SessionUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
-import com.hiroma.util.DBConnection;
-import java.sql.Connection;
+import java.sql.SQLException;
 
-
-/**
- * Servlet implementation class LoginServlet
- */
-@WebServlet("/LoginServlet")
+@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoginServlet() {
-        super();
-        // TODO Auto-generated constructor stub
+
+    private LoginService loginService = new LoginService();
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.getRequestDispatcher("/WEB-INF/views/public/login.jsp").forward(request, response);
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		 Connection conn = DBConnection.getConnection();
-		    if (conn != null) {
-		        System.out.println("SUCCESS - Database connected!");
-		    } else {
-		        System.out.println("FAILED - Database not connected!");
-		    }
-		    
-		    request.getRequestDispatcher("/authentication/login.jsp")
-		           .forward(request, response);
-	}
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
 
+        try {
+            UserModel user = loginService.loginUser(email, password);
+
+            if (user == null) {
+                request.setAttribute("error", "Invalid email or password.");
+                request.getRequestDispatcher("/WEB-INF/views/public/login.jsp").forward(request, response);
+                return;
+            }
+
+            if (user.getStatus().equals("pending")) {
+                request.setAttribute("error", "Your account is pending admin approval.");
+                request.getRequestDispatcher("/WEB-INF/views/public/login.jsp").forward(request, response);
+                return;
+            }
+
+            if (user.getStatus().equals("rejected")) {
+                request.setAttribute("error", "Your account has been rejected. Contact support.");
+                request.getRequestDispatcher("/WEB-INF/views/public/login.jsp").forward(request, response);
+                return;
+            }
+
+            // Set session
+            SessionUtil.setUser(request.getSession(), user);
+            SessionUtil.setRole(request.getSession(), user.getRole());
+
+            // Redirect based on role
+            if (user.getRole().equals("admin")) {
+                response.sendRedirect(request.getContextPath() + "/admin/dashboard");
+            } else {
+                response.sendRedirect(request.getContextPath() + "/dashboard");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            request.setAttribute("error", "Database error. Please try again.");
+            request.getRequestDispatcher("/WEB-INF/views/public/login.jsp").forward(request, response);
+        }
+    }
 }
