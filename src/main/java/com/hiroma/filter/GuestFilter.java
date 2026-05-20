@@ -1,0 +1,35 @@
+package com.hiroma.filter;
+
+import com.hiroma.model.UserModel;
+import com.hiroma.util.SessionUtil;
+import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebFilter;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+
+@WebFilter({"/login", "/register"})
+public class GuestFilter implements Filter {
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse res = (HttpServletResponse) response;
+
+        UserModel user = (UserModel) SessionUtil.getUser(req.getSession());
+
+        if (user != null) {
+            if (user.getRole().equals("admin")) {
+                res.sendRedirect(req.getContextPath() + "/admin/dashboard");
+            } else {
+                res.sendRedirect(req.getContextPath() + "/dashboard");
+            }
+            return;
+        }
+
+        chain.doFilter(request, response);
+    }
+}
