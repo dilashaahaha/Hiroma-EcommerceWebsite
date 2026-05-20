@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
- <%@ page isELIgnored="false" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Management - H/ROMA Admin</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
 <div class="admin-layout">
 
-    <!-- ===== SIDEBAR ===== -->
     <aside class="admin-sidebar">
         <div class="sidebar-logo">
             <div class="logo-text">H/ROMA</div>
@@ -22,27 +20,38 @@
         <div class="sidebar-section">
             <p class="sidebar-section-label">OVERVIEW</p>
             <ul class="sidebar-nav">
-                <li><a href="${pageContext.request.contextPath}/admin/dashboard" class="sidebar-link">&#9783; Dashboard</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/dashboard" class="sidebar-link">
+                    <i class="fas fa-gauge"></i> Dashboard
+                </a></li>
             </ul>
         </div>
         <div class="sidebar-section">
             <p class="sidebar-section-label">CATALOGUES</p>
             <ul class="sidebar-nav">
-                <li><a href="${pageContext.request.contextPath}/admin/products" class="sidebar-link">&#8226; Products</a></li>
-                <li><a href="${pageContext.request.contextPath}/admin/brands" class="sidebar-link">&#8226; Brands</a></li>
-                <li><a href="${pageContext.request.contextPath}/admin/categories" class="sidebar-link">&#8226; Categories</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/products" class="sidebar-link">
+                    <i class="fas fa-box"></i> Products
+                </a></li>
+                <li><a href="${pageContext.request.contextPath}/brands" class="sidebar-link">
+                    <i class="fas fa-tag"></i> Brands
+                </a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/categories" class="sidebar-link">
+                    <i class="fas fa-list"></i> Categories
+                </a></li>
             </ul>
         </div>
         <div class="sidebar-section">
             <p class="sidebar-section-label">ORDERS &amp; USERS</p>
             <ul class="sidebar-nav">
-                <li><a href="${pageContext.request.contextPath}/admin/orders" class="sidebar-link">&#8226; Orders</a></li>
-                <li><a href="${pageContext.request.contextPath}/admin/users" class="sidebar-link active">&#8226; Users</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/orders" class="sidebar-link">
+                    <i class="fas fa-receipt"></i> Orders
+                </a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/users" class="sidebar-link active">
+                    <i class="fas fa-users"></i> Users
+                </a></li>
             </ul>
         </div>
     </aside>
 
-   
     <main class="admin-content">
 
         <div class="page-header">
@@ -52,13 +61,14 @@
                     <a href="${pageContext.request.contextPath}/admin/dashboard">Dashboard</a> / Users
                 </p>
             </div>
-            <button class="btn-export" onclick="exportCSV()">EXPORT CSV</button>
+            <button class="btn-export" onclick="exportCSV()">
+                <i class="fas fa-file-export"></i> EXPORT CSV
+            </button>
         </div>
 
-        <!-- Filters -->
         <div class="filters-bar">
             <div class="search-box">
-                <span class="search-icon"></span>
+                <i class="fas fa-magnifying-glass search-icon"></i>
                 <input type="text" placeholder="Search by name, email..." id="searchInput" oninput="filterUsers()">
             </div>
             <select class="filter-select" id="roleFilter" onchange="filterUsers()">
@@ -74,7 +84,6 @@
             </select>
         </div>
 
-        <!-- Users Table -->
         <div class="table-wrapper">
             <table class="users-table" id="usersTable">
                 <thead>
@@ -105,8 +114,10 @@
                         <td>Jan 12, 2025</td>
                         <td>8</td>
                         <td class="actions-cell">
-                            <a href="${pageContext.request.contextPath}/admin/users/edit/1" class="action-edit">edit</a>
-                            <button class="action-delete" onclick="deleteUser(this)">&#10005;</button>
+                            
+                            <button class="action-delete" onclick="deleteUser(this)">
+                                <i class="fas fa-trash"></i>
+                            </button>
                         </td>
                     </tr>
                     <tr>
@@ -125,8 +136,9 @@
                         <td>Feb 3, 2025</td>
                         <td>—</td>
                         <td class="actions-cell">
-                            <a href="${pageContext.request.contextPath}/admin/users/edit/2" class="action-edit">edit</a>
-                            <button class="action-delete" onclick="deleteUser(this)">&#10005;</button>
+                                                        <button class="action-delete" onclick="deleteUser(this)">
+                                <i class="fas fa-trash"></i>
+                            </button>
                         </td>
                     </tr>
                     <tr>
@@ -145,8 +157,10 @@
                         <td>Mar 8, 2025</td>
                         <td>3</td>
                         <td class="actions-cell">
-                            <a href="${pageContext.request.contextPath}/admin/users/edit/3" class="action-edit">edit</a>
-                            <button class="action-delete" onclick="deleteUser(this)">&#10005;</button>
+                            
+                            <button class="action-delete" onclick="deleteUser(this)">
+                                <i class="fas fa-trash"></i>
+                            </button>
                         </td>
                     </tr>
                     <tr>
@@ -165,8 +179,9 @@
                         <td>Dec 1, 2024</td>
                         <td>—</td>
                         <td class="actions-cell">
-                            <a href="${pageContext.request.contextPath}/admin/users/edit/4" class="action-edit">edit</a>
-                            <button class="action-delete" onclick="deleteUser(this)">&#10005;</button>
+                            <button class="action-delete" onclick="deleteUser(this)">
+                                <i class="fas fa-trash"></i>
+                            </button>
                         </td>
                     </tr>
                     <tr>
@@ -185,15 +200,15 @@
                         <td>Apr 2, 2025</td>
                         <td>12</td>
                         <td class="actions-cell">
-                            <a href="${pageContext.request.contextPath}/admin/users/edit/5" class="action-edit">edit</a>
-                            <button class="action-delete" onclick="deleteUser(this)">&#10005;</button>
+                            <button class="action-delete" onclick="deleteUser(this)">
+                                <i class="fas fa-trash"></i>
+                            </button>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <!-- Pagination -->
         <div class="pagination-bar">
             <span class="pagination-info">Showing 1–10 of 284 users</span>
             <div class="pagination">
@@ -214,31 +229,25 @@
         const role = document.getElementById('roleFilter').value.toUpperCase();
         const status = document.getElementById('statusFilter').value.toUpperCase();
         const rows = document.querySelectorAll('#usersTable tbody tr');
-
         rows.forEach(row => {
-        const name = row.querySelector('.user-name').textContent.toLowerCase();
+            const name = row.querySelector('.user-name').textContent.toLowerCase();
             const email = row.querySelector('.user-email').textContent.toLowerCase();
             const rowRole = row.querySelector('.role-badge').textContent;
             const rowStatus = row.querySelector('.status-badge').textContent;
-
             const matchSearch = name.includes(search) || email.includes(search);
             const matchRole = !role || rowRole === role;
             const matchStatus = !status || rowStatus === status;
-
             row.style.display = (matchSearch && matchRole && matchStatus) ? '' : 'none';
         });
     }
-
     function deleteUser(btn) {
         if (confirm('Are you sure you want to delete this user?')) {
             btn.closest('tr').remove();
         }
     }
-
     function exportCSV() {
         alert('CSV export started.');
     }
-
     document.querySelectorAll('.page-btn').forEach(btn => {
         btn.addEventListener('click', function () {
             document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));

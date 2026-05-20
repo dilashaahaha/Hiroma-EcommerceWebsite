@@ -61,9 +61,7 @@ body {
 }
 
 .nav-links li a:hover,
-.nav-links li a.active {
-    color: var(--accent-gold);
-}
+.nav-links li a.active { color: var(--accent-gold); }
 
 .nav-actions {
     display: flex;
@@ -204,22 +202,28 @@ body {
 /* ===== STORY ===== */
 .story {
     display: flex;
-    align-items: center;
-    padding: 60px 50px;
-    max-width: 1100px;
+    align-items: stretch;
+    padding: 0;
+    max-width: 100%;
     margin: 0 auto;
-    gap: 50px;
+    gap: 0;
 }
 
-.story-image { flex: 0 0 520px; }
+.story-image { flex: 1; }
 
 .story-img {
     width: 100%;
-    height: 360px;
+    height: 100%;
+    min-height: 400px;
     object-fit: cover;
     display: block;
-    border-radius: 2px;
+    border-radius: 0;
     background-color: #3a5a40;
+}
+
+.story-text {
+    flex: 1;
+    padding: 60px 50px;
 }
 
 .story-title {
@@ -270,6 +274,13 @@ body {
     text-align: left;
 }
 
+.value-card i {
+    font-size: 24px;
+    color: var(--accent-gold);
+    margin-bottom: 12px;
+    display: block;
+}
+
 .value-heading {
     font-family: var(--font-serif);
     font-size: 15px;
@@ -286,7 +297,8 @@ body {
 
 /* ===== TEAM ===== */
 .team {
-    padding: 60px 50px;
+    width: 100%;
+    padding: 60px 20px;
     background-color: var(--cream-light);
     text-align: center;
 }
@@ -300,14 +312,14 @@ body {
 }
 
 .team-grid {
-    display: flex;
-    gap: 20px;
-    max-width: 1000px;
-    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    width: 100%;
 }
 
 .team-card {
-    flex: 1;
+    width: 100%;
     background-color: var(--white);
     border: 1px solid var(--border);
     overflow: hidden;
@@ -316,15 +328,12 @@ body {
 
 .team-img {
     width: 100%;
-    height: 200px;
+    height: 420px;
     object-fit: cover;
     display: block;
-    background-color: #c8b89a;
 }
 
-.team-info {
-    padding: 14px 16px 16px;
-}
+.team-info { padding: 14px 16px 16px; }
 
 .team-name {
     font-family: var(--font-serif);
@@ -342,6 +351,8 @@ body {
     display: block;
     margin-bottom: 8px;
 }
+
+.team-role i { margin-right: 4px; }
 
 .team-desc {
     font-size: 12px;
@@ -434,9 +445,10 @@ body {
 @media (max-width: 900px) {
     .hero { flex-direction: column; }
     .hero-image { min-height: 200px; }
-    .story { flex-direction: column; padding: 40px 20px; }
-    .story-image { flex: unset; width: 100%; }
-    .values-grid, .team-grid { flex-direction: column; }
+    .story { flex-direction: column; }
+    .story-text { padding: 40px 20px; }
+    .values-grid { flex-direction: column; }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
     .cta { flex-direction: column; padding: 40px 20px; }
     .cta-buttons { width: 100%; }
     .stats { flex-wrap: wrap; gap: 20px; padding: 30px 20px; }
@@ -446,6 +458,7 @@ body {
 @media (max-width: 600px) {
     .navbar { flex-direction: column; height: auto; padding: 14px 20px; gap: 10px; }
     .nav-links { flex-wrap: wrap; justify-content: center; gap: 12px; }
+    .team-grid { grid-template-columns: 1fr; }
     .hero-text { padding: 40px 20px; }
     .hero-title { font-size: 28px; }
     .values, .team { padding: 40px 20px; }

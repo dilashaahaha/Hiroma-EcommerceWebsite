@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ page isELIgnored="false" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - H/ROMA</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/about.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
@@ -34,10 +33,12 @@
             <p class="section-label">— OUR STORY</p>
             <h1 class="hero-title">Where the mountains<br>meet your <span class="accent">cup.</span></h1>
             <p class="hero-desc">Born from a love of Nepal's Highlands and a belief that great tea should reach every home — Hiroma is a bridge between the ancient gardens of the Himalayas and the world.</p>
-            <a href="${pageContext.request.contextPath}/shop" class="btn-outline">DISCOVER OUR TEAS</a>
+            <a href="${pageContext.request.contextPath}/shop" class="btn-outline">
+                <i class="fas fa-bag-shopping"></i> DISCOVER OUR TEAS
+            </a>
         </div>
         <div class="hero-image">
-            <img src="${pageContext.request.contextPath}/images/Hiroma-Website/src/main/webapp/images/depositphotos_369495602-stock-photo-cup-coffee-mountain-landscape-background.jpg"
+            <img src="${pageContext.request.contextPath}/images/mountain.jpg"
                  alt="Himalayan mountains with tea cup"
                  class="hero-img"
                  onerror="this.style.display='none'">
@@ -90,14 +91,17 @@
         <h2 class="values-title">Our values</h2>
         <div class="values-grid">
             <div class="value-card">
+                <i class="fas fa-handshake"></i>
                 <h3 class="value-heading">Direct sourcing</h3>
                 <p class="value-desc">We work directly with garden families in Ilam, Taplejung, and Dhankuta — no middlemen, fair prices, real relationships.</p>
             </div>
             <div class="value-card">
+                <i class="fas fa-eye"></i>
                 <h3 class="value-heading">Full transparency</h3>
                 <p class="value-desc">Every product shows the garden, district, harvest season, and altitude. You know exactly where your tea comes from.</p>
             </div>
             <div class="value-card">
+                <i class="fas fa-leaf"></i>
                 <h3 class="value-heading">Sustainable practice</h3>
                 <p class="value-desc">Our partners follow organic and regenerative methods. We offset our delivery footprint and use minimal, recyclable packaging.</p>
             </div>
@@ -110,22 +114,22 @@
         <h2 class="team-title">Meet the team</h2>
         <div class="team-grid">
             <div class="team-card">
-                <img src="${pageContext.request.contextPath}/images/Dilasha.jpeg"
+                <img src="${pageContext.request.contextPath}/images/Dilasha.jpg"
                      alt="Dilasha Vaidya" class="team-img"
                      onerror="this.style.background='#c8b89a'; this.style.minHeight='180px'; this.style.display='block'">
                 <div class="team-info">
                     <h4 class="team-name">Dilasha Vaidya</h4>
-                    <span class="team-role">Founder</span>
+                    <span class="team-role"><i class="fas fa-star"></i> Founder</span>
                     <p class="team-desc">Raised in Kathmandu, Dilasha has personal ties to half our garden partners. She ensures quality at the source, every season.</p>
                 </div>
             </div>
             <div class="team-card">
-                <img src="${pageContext.request.contextPath}/images/Dibyani.jpeg"
+                <img src="${pageContext.request.contextPath}/images/Dibyani.jpg"
                      alt="Dibyani Basnet" class="team-img"
                      onerror="this.style.background='#c8b89a'; this.style.minHeight='180px'; this.style.display='block'">
                 <div class="team-info">
                     <h4 class="team-name">Dibyani Basnet</h4>
-                    <span class="team-role">Director</span>
+                    <span class="team-role"><i class="fas fa-chart-line"></i> Director</span>
                     <p class="team-desc">Raised in Dharan, Dibyani has personal ties to half our garden partners. She ensures quality at the source, every season.</p>
                 </div>
             </div>
@@ -135,17 +139,17 @@
                      onerror="this.style.background='#c8b89a'; this.style.minHeight='180px'; this.style.display='block'">
                 <div class="team-info">
                     <h4 class="team-name">Prashansa Magar</h4>
-                    <span class="team-role">Manager</span>
+                    <span class="team-role"><i class="fas fa-clipboard-list"></i> Manager</span>
                     <p class="team-desc">Raised in Dharan, Prashansa has personal ties to half our garden partners. She ensures quality at the source, every season.</p>
                 </div>
             </div>
             <div class="team-card">
-                <img src="${pageContext.request.contextPath}/images/Brishika.jpeg"
+                <img src="${pageContext.request.contextPath}/images/Brishika.jpg"
                      alt="Brishika Thapa Magar" class="team-img"
                      onerror="this.style.background='#c8b89a'; this.style.minHeight='180px'; this.style.display='block'">
                 <div class="team-info">
                     <h4 class="team-name">Brishika Thapa Magar</h4>
-                    <span class="team-role">CEO</span>
+                    <span class="team-role"><i class="fas fa-crown"></i> CEO</span>
                     <p class="team-desc">Raised in Kathmandu, Brishika has personal ties to half our garden partners. She ensures quality at the source, every season.</p>
                 </div>
             </div>
@@ -159,8 +163,12 @@
             <p class="cta-desc">Browse our full collection of Himalayan teas — filtered by mood, garden, or flavour. Free delivery on orders over Rs. 2,000.</p>
         </div>
         <div class="cta-buttons">
-            <a href="${pageContext.request.contextPath}/shop" class="btn-gold">SHOP THE COLLECTION</a>
-            <a href="${pageContext.request.contextPath}/contact" class="btn-outline-white">CONTACT OUR TEAM</a>
+            <a href="${pageContext.request.contextPath}/shop" class="btn-gold">
+                <i class="fas fa-bag-shopping"></i> SHOP THE COLLECTION
+            </a>
+            <a href="${pageContext.request.contextPath}/contact" class="btn-outline-white">
+                <i class="fas fa-envelope"></i> CONTACT OUR TEAM
+            </a>
         </div>
     </section>
 
@@ -172,4 +180,3 @@
 
 </body>
 </html>
-    

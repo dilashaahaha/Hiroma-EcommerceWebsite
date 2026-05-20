@@ -32,56 +32,76 @@ public class RegisterServlet extends HttpServlet {
         String password        = request.getParameter("password");
         String confirmPassword = request.getParameter("confirmPassword");
 
-        // 1. Empty fields
-        if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() ||
-            phone.isEmpty() || role == null || password.isEmpty() || confirmPassword.isEmpty()) {
-            request.setAttribute("error", "All fields are required.");
+        boolean hasError = false;
+
+        // 1. First name
+        if (firstName.isEmpty()) {
+            request.setAttribute("firstNameError", "First name is required.");
+            hasError = true;
+        } else if (!firstName.matches("[a-zA-Z ]+")) {
+            request.setAttribute("firstNameError", "Letters only, no numbers.");
+            hasError = true;
+        }
+
+        // 2. Last name
+        if (lastName.isEmpty()) {
+            request.setAttribute("lastNameError", "Last name is required.");
+            hasError = true;
+        } else if (!lastName.matches("[a-zA-Z ]+")) {
+            request.setAttribute("lastNameError", "Letters only, no numbers.");
+            hasError = true;
+        }
+
+        // 3. Email
+        if (email.isEmpty()) {
+            request.setAttribute("emailError", "Email address is required.");
+            hasError = true;
+        } else if (!email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+            request.setAttribute("emailError", "Invalid email format (e.g. you@email.com).");
+            hasError = true;
+        }
+
+        // 4. Phone
+        if (phone.isEmpty()) {
+            request.setAttribute("phoneError", "Phone number is required.");
+            hasError = true;
+        } else if (!phone.matches("^(97|98)\\d{8}$")) {
+            request.setAttribute("phoneError", "Must be 10 digits starting with 97 or 98.");
+            hasError = true;
+        }
+
+        
+
+        // 5. Password
+        if (password.isEmpty()) {
+            request.setAttribute("passwordError", "Password is required.");
+            hasError = true;
+        } else if (password.length() < 8) {
+            request.setAttribute("passwordError", "Password must be at least 8 characters.");
+            hasError = true;
+        }
+
+        // 6. Confirm password
+        if (confirmPassword.isEmpty()) {
+            request.setAttribute("confirmPasswordError", "Please confirm your password.");
+            hasError = true;
+        } else if (!password.isEmpty() && !password.equals(confirmPassword)) {
+            request.setAttribute("confirmPasswordError", "Passwords do not match.");
+            hasError = true;
+        }
+
+        // Forward back if any error
+        if (hasError) {
             request.getRequestDispatcher("/authentication/register.jsp").forward(request, response);
             return;
         }
 
-        // 2. Name letters only
-        if (!firstName.matches("[a-zA-Z]+") || !lastName.matches("[a-zA-Z]+")) {
-            request.setAttribute("error", "Name must contain letters only.");
-            request.getRequestDispatcher("/authentication/register.jsp").forward(request, response);
-            return;
-        }
-
-        // 3. Email format
-        if (!email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
-            request.setAttribute("error", "Invalid email format.");
-            request.getRequestDispatcher("/authentication/register.jsp").forward(request, response);
-            return;
-        }
-
-        // 4. Nepali phone format
-        if (!phone.matches("^(97|98)\\d{8}$")) {
-            request.setAttribute("error", "Phone must be a valid Nepali number (e.g. 98XXXXXXXX).");
-            request.getRequestDispatcher("/authentication/register.jsp").forward(request, response);
-            return;
-        }
-
-        // 5. Password minimum length
-        if (password.length() < 8) {
-            request.setAttribute("error", "Password must be at least 8 characters.");
-            request.getRequestDispatcher("/authentication/register.jsp").forward(request, response);
-            return;
-        }
-
-        // 6. Passwords match
-        if (!password.equals(confirmPassword)) {
-            request.setAttribute("error", "Passwords do not match.");
-            request.getRequestDispatcher("/authentication/register.jsp").forward(request, response);
-            return;
-        }
-
-        // Hash password
+        // All valid
         String hashedPassword = PasswordUtil.hashSHA256(password);
         System.out.println("User: " + firstName + " " + lastName);
         System.out.println("Email: " + email);
         System.out.println("Hashed Password: " + hashedPassword);
 
-        // Redirect to login
         response.sendRedirect(request.getContextPath() + "/authentication/login.jsp?registered=true");
     }
 }

@@ -1,5 +1,6 @@
 package com.hiroma.controller;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -39,9 +40,11 @@ public class contactServlet extends HttpServlet {
         String email = request.getParameter("email");
         String message = request.getParameter("message");
         String topic = request.getParameter("topic");
+        
+        request.setAttribute("success", "Form submitted successfully!");
 
-        // For now just redirect back to contact page
-        response.sendRedirect(request.getContextPath() + "/contact");
+        RequestDispatcher rd = request.getRequestDispatcher("/contact.jsp");
+        rd.forward(request, response);
 	}
 
 }
