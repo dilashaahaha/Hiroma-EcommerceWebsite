@@ -46,21 +46,21 @@
         <p class="contact-desc">Our team is based in Kathmandu and typically responds within one business day.</p>
 
         <div class="contact-item">
-            <div class="contact-icon">📍</div>
+            <div class="contact-icon"></div>
             <div>
                 <p class="contact-item-label">ADDRESS</p>
                 <p>Jhamsikhel, Lalitpur<br>Kathmandu Valley, Nepal</p>
             </div>
         </div>
         <div class="contact-item">
-            <div class="contact-icon">✉</div>
+            <div class="contact-icon"></div>
             <div>
                 <p class="contact-item-label">EMAIL</p>
                 <p>hello@hiroma.com.np<br>support@hiroma.com.np</p>
             </div>
         </div>
         <div class="contact-item">
-            <div class="contact-icon">📞</div>
+            <div class="contact-icon"></div>
             <div>
                 <p class="contact-item-label">PHONE & WHATSAPP</p>
                 <p>+977 98-4100-0000<br>Available Sun–Fri, 9am–6pm</p>

@@ -52,7 +52,8 @@
         </div>
     </div>
     <div class="hero-right">
-        <div class="hero-img-circle"></div>
+        <div class="hero-img-circle">
+        </div>
         <div class="hero-tags">
             <span>ORGANIC</span><span>HANDPICKED</span><span>NEPAL</span>
         </div>

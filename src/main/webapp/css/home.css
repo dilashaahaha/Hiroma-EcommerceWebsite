@@ -229,3 +229,51 @@
     .featured-section { padding: 2rem 1rem; }
     .featured-grid { grid-template-columns: repeat(2, 1fr); }
 }
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 5%;
+    flex-wrap: wrap;
+}
+
+.hero-left {
+    flex: 1;
+    min-width: 280px;
+}
+
+.hero-left h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero-left h1 em {
+    font-style: italic;
+    color: #d4a373;
+}
+
+.hero-buttons {
+    margin-top: 1.5rem;
+}
+
+.btn-gold, .btn-outline {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    margin-right: 1rem;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+}
+
+.btn-gold {
+    background: #d4a373;
+    color: white;
+    border: none;
+}
+
+.btn-outline {
+    border: 2px solid #d4a373;
+    color: #2d6a4f;
+}
+
+

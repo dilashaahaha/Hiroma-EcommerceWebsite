@@ -1,3 +1,139 @@
+/* LAYOUT */
+:root {
+    --green-dark: #1e3a2f;
+    --green-mid: #2d5a45;
+    --gold: #c9a84c;
+    --cream: #f5f0e8;
+    --text-dark: #1a1a1a;
+    --text-light: #888;
+    --border: #e8e3d8;
+}
+
+.admin-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 220px;
+    min-height: 100vh;
+    background: var(--green-dark);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.sidebar-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 0.3rem;
+}
+
+.sidebar-brand span { color: var(--gold); }
+
+.sidebar-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 2rem;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    flex: 1;
+}
+
+.sidebar nav a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 0.78rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+}
+
+.sidebar-logout {
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-size: 0.72rem;
+    margin-top: auto;
+    padding: 0.5rem 0.8rem;
+}
+
+.sidebar-logout:hover { color: #fff; }
+
+.main-content {
+    margin-left: 220px;
+    flex: 1;
+    padding: 2.5rem;
+    background: var(--cream);
+    min-height: 100vh;
+}
+
+/* STAT CARDS */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+
+.stat-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--text-dark);
+}
+
+/* TABLE */
+table { width: 100%; border-collapse: collapse; }
+th {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--text-light);
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+}
+td {
+    font-size: 0.8rem;
+    padding: 0.8rem;
+    border-bottom: 1px solid #f5f0e8;
+    color: var(--text-dark);
+}
+
+.badge {
+    padding: 0.25rem 0.7rem;
+    border-radius: 20px;
+    font-size: 0.68rem;
+    font-weight: 500;
+}
+
 /* DASHBOARD SPECIFIC */
 .dash-topbar {
     display: flex;

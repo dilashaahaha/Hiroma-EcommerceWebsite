@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard – Hiroma Admin</title>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/global.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin.css">
 </head>
 <body>
@@ -18,7 +19,7 @@
         <div class="sidebar-brand">H<span>/</span>ROMA</div>
         <p class="sidebar-label">ADMIN PANEL</p>
         <nav>
-            <a href="${pageContext.request.contextPath}/admin/adminDashboard.jsp" class="active">Dashboard</a>
+       		<a href="${pageContext.request.contextPath}/admin/dashboard" class="active">Dashboard</a>
             <a href="${pageContext.request.contextPath}/admin/products">Products</a>
             <a href="${pageContext.request.contextPath}/admin/categories">Categories</a>
             <a href="${pageContext.request.contextPath}/admin/orders">Orders</a>
