@@ -1,12 +1,14 @@
 package com.hiroma.dao;
 
+import com.hiroma.model.BrandModel;
+import com.hiroma.model.CategoryModel;
 import com.hiroma.util.DBConnection;
 import java.sql.*;
 import java.util.*;
 
 public class CategoryDAO {
 
-    public List<Map<String, Object>> getAllCategories() throws SQLException {
+    public List<Map<String, Object>> getAllCategories1() throws SQLException {
         List<Map<String, Object>> list = new ArrayList<>();
         String sql = "SELECT c.*, COUNT(p.id) as product_count " +
                      "FROM category c LEFT JOIN product p ON p.category_id = c.id " +
@@ -54,6 +56,36 @@ public class CategoryDAO {
             ps.setInt(1, id);
             return ps.executeUpdate() > 0;
         }
+    }
+    public List<CategoryModel> getAllCategories() throws SQLException {
+        List<CategoryModel> categories = new ArrayList<>();
+        String sql = "SELECT * FROM categories";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                CategoryModel category = new CategoryModel();
+                category.setId(rs.getInt("id"));
+                category.setName(rs.getString("name"));
+                categories.add(category);
+            }
+        }
+        return categories;
+    }
+    public List<BrandModel> getAllBrands() throws SQLException {
+        List<BrandModel> brands = new ArrayList<>();
+        String sql = "SELECT * FROM brands";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                BrandModel brand = new BrandModel();
+                brand.setBrandId(rs.getInt("id"));
+                brand.setBrandName(rs.getString("name"));
+                brands.add(brand);
+            }
+        }
+        return brands;
     }
 
     public Map<String, Object> getCategoryById(int id) throws SQLException {

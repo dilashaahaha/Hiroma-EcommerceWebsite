@@ -1,28 +1,28 @@
 package com.hiroma.dao;
 
+import com.hiroma.model.BrandModel;
 import com.hiroma.util.DBConnection;
 import java.sql.*;
 import java.util.*;
 
+
 public class BrandDAO {
 
-    public List<Map<String, Object>> getAllBrands() throws SQLException {
-        List<Map<String, Object>> list = new ArrayList<>();
-        String sql = "SELECT * FROM brand ORDER BY name";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) {
-                Map<String, Object> row = new HashMap<>();
-                row.put("id", rs.getInt("id"));
-                row.put("name", rs.getString("name"));
-                row.put("origin", rs.getString("origin"));
-                row.put("description", rs.getString("description"));
-                list.add(row);
-            }
-        }
-        return list;
-    }
+	public List<BrandModel> getAllBrands() throws SQLException {
+	    List<BrandModel> brands = new ArrayList<>();
+	    String sql = "SELECT * FROM brands";
+	    try (Connection conn = DBConnection.getConnection();
+	         PreparedStatement ps = conn.prepareStatement(sql);
+	         ResultSet rs = ps.executeQuery()) {
+	        while (rs.next()) {
+	            BrandModel brand = new BrandModel();
+	            brand.setBrandId(rs.getInt("id"));
+	            brand.setBrandName(rs.getString("name"));
+	            brands.add(brand);
+	        }
+	    }
+	    return brands;
+	}
 
     public boolean addBrand(String name, String origin, String description) throws SQLException {
         String sql = "INSERT INTO brand (name, origin, description) VALUES (?, ?, ?)";
