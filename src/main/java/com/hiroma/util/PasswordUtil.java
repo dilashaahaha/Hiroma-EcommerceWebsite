@@ -5,23 +5,28 @@ import java.security.NoSuchAlgorithmException;
 
 public class PasswordUtil {
 
-    // Encrypt password using MD5
     public static String encrypt(String password) {
         try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
             byte[] hash = md.digest(password.getBytes());
-            StringBuilder sb = new StringBuilder();
+            StringBuilder hexString = new StringBuilder();
             for (byte b : hash) {
-                sb.append(String.format("%02x", b));
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
             }
-            return sb.toString();
+            return hexString.toString();
         } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("MD5 algorithm not found", e);
+            throw new RuntimeException("SHA-256 not available", e);
         }
     }
 
-    // Verify entered password against stored encrypted password
-    public static boolean verify(String plainPassword, String encryptedPassword) {
-        return encrypt(plainPassword).equals(encryptedPassword);
+    public static boolean checkPassword(String input, String storedHash) {
+        return encrypt(input).equals(storedHash);
     }
+
+	public static boolean verify(String currentPassword, String password) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

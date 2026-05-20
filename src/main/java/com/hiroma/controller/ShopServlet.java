@@ -1,40 +1,48 @@
 package com.hiroma.controller;
 
+import com.hiroma.dao.CategoryDAO;
+import com.hiroma.dao.TeaDAO;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.sql.SQLException;
+import java.util.List;
+import com.hiroma.model.TeaModel;
 
-/**
- * Servlet implementation class ShopServlet
- */
-@WebServlet("/ShopServlet")
+@WebServlet("/shop")
 public class ShopServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ShopServlet() {
-        super();
-        // TODO Auto-generated constructor stub
+
+    private TeaDAO teaDAO = new TeaDAO();
+    private CategoryDAO categoryDAO = new CategoryDAO();
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            String keyword = request.getParameter("search");
+            String categoryIdStr = request.getParameter("categoryId");
+
+            List<TeaModel> teas;
+
+            if (keyword != null && !keyword.trim().isEmpty()) {
+                teas = teaDAO.searchTeas(keyword);
+                request.setAttribute("keyword", keyword);
+            } else if (categoryIdStr != null && !categoryIdStr.isEmpty()) {
+                teas = teaDAO.getTeasByCategory(Integer.parseInt(categoryIdStr));
+                request.setAttribute("selectedCategory", Integer.parseInt(categoryIdStr));
+            } else {
+                teas = teaDAO.getAllTeas();
+            }
+
+            request.setAttribute("teas", teas);
+            request.setAttribute("categories", categoryDAO.getAllCategories());
+            request.getRequestDispatcher("/WEB-INF/views/public/shop.jsp").forward(request, response);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            response.sendRedirect(request.getContextPath() + "/home");
+        }
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }

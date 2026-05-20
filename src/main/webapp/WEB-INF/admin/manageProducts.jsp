@@ -10,10 +10,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin.css">
 </head>
 <body>
-
 <div class="admin-wrapper">
-
-    <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="sidebar-brand">H<span>/</span>ROMA</div>
         <p class="sidebar-label">ADMIN PANEL</p>
@@ -21,66 +18,34 @@
             <a href="${pageContext.request.contextPath}/admin/dashboard">Dashboard</a>
             <a href="${pageContext.request.contextPath}/admin/products" class="active">Products</a>
             <a href="${pageContext.request.contextPath}/admin/categories">Categories</a>
-            <a href="${pageContext.request.contextPath}/admin/brands">Brands</a>
             <a href="${pageContext.request.contextPath}/admin/orders">Orders</a>
             <a href="${pageContext.request.contextPath}/admin/users">Users</a>
         </nav>
         <a href="${pageContext.request.contextPath}/logout" class="sidebar-logout">Sign out</a>
     </aside>
-
-    <!-- MAIN CONTENT -->
     <main class="main-content">
-
-        <!-- BREADCRUMB + HEADER -->
-        <div class="page-topbar">
+        <div class="page-header">
             <div>
-                <p class="breadcrumb"><a href="${pageContext.request.contextPath}/admin/dashboard">Dashboard</a> / Products</p>
-                <h1 class="page-title">Products</h1>
+                <h1>Products</h1>
+                <p>Dashboard / Products</p>
             </div>
-            <a href="${pageContext.request.contextPath}/admin/products?action=add" class="btn-add">+ ADD PRODUCT</a>
+            <a href="${pageContext.request.contextPath}/admin/products?action=add" class="btn-add-product">+ ADD PRODUCT</a>
         </div>
 
-        <!-- SUCCESS/ERROR ALERTS -->
-        <c:if test="${param.success == 'added'}">
-            <div class="alert alert-success">Product added successfully.</div>
+        <c:if test="${not empty param.success}">
+            <div class="alert alert-success">${param.success}</div>
         </c:if>
-        <c:if test="${param.success == 'updated'}">
-            <div class="alert alert-success">Product updated successfully.</div>
-        </c:if>
-        <c:if test="${param.success == 'deleted'}">
-            <div class="alert alert-success">Product deleted successfully.</div>
+        <c:if test="${not empty error}">
+            <div class="alert alert-error">${error}</div>
         </c:if>
 
-        <!-- SEARCH & FILTER -->
-        <form method="get" action="${pageContext.request.contextPath}/admin/products" class="filter-bar">
-            <div class="search-wrap">
-                <span class="search-icon">&#9906;</span>
-                <input type="text" name="keyword" placeholder="Search products..."
-                       value="${keyword}" class="search-input" />
-            </div>
-
-            <select name="categoryId" class="filter-select">
-                <option value="0">All categories</option>
-                <c:forEach var="cat" items="${categories}">
-                    <option value="${cat.id}" ${selectedCategory == cat.id ? 'selected' : ''}>${cat.name}</option>
-                </c:forEach>
-            </select>
-
-            <select name="brandId" class="filter-select">
-                <option value="0">All brands</option>
-                <c:forEach var="brand" items="${brands}">
-                    <option value="${brand.id}" ${selectedBrand == brand.id ? 'selected' : ''}>${brand.name}</option>
-                </c:forEach>
-            </select>
-
-            <button type="submit" class="btn-filter">Search</button>
+        <!-- Search -->
+        <form action="${pageContext.request.contextPath}/admin/products" method="get" class="search-bar">
+            <input type="text" name="search" placeholder="Search products, SKUs..." value="${keyword}" />
+            <button type="submit">Search</button>
         </form>
 
-        <!-- PRODUCTS TABLE -->
         <div class="table-card">
-            <div class="table-meta">
-                Showing <strong>${products.size()}</strong> product(s)
-            </div>
             <table>
                 <thead>
                     <tr>
@@ -89,61 +54,38 @@
                         <th>BRAND</th>
                         <th>PRICE</th>
                         <th>STOCK</th>
-                        <th>STATUS</th>
                         <th>ACTIONS</th>
                     </tr>
                 </thead>
                 <tbody>
                     <c:choose>
-                        <c:when test="${empty products}">
-                            <tr>
-                                <td colspan="7" class="empty-msg">No products found.</td>
-                            </tr>
+                        <c:when test="${empty teas}">
+                            <tr><td colspan="6" class="empty-msg">No products found.</td></tr>
                         </c:when>
                         <c:otherwise>
-                            <c:forEach var="p" items="${products}">
+                            <c:forEach var="tea" items="${teas}">
                                 <tr>
                                     <td>
-                                        <div class="product-cell">
-                                            <c:choose>
-                                                <c:when test="${not empty p.imagePath}">
-                                                    <img src="${pageContext.request.contextPath}/${p.imagePath}"
-                                                         alt="${p.name}" class="product-thumb" />
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <div class="product-thumb-placeholder">T</div>
-                                                </c:otherwise>
-                                            </c:choose>
-                                            <span class="product-name">${p.name}</span>
-                                        </div>
+                                        <strong>${tea.name}</strong>
                                     </td>
-                                    <td>${p.categoryName}</td>
-                                    <td>${p.brandName}</td>
-                                    <td>Rs. <fmt:formatNumber value="${p.price}" pattern="#,##0"/></td>
+                                    <td>${tea.categoryName}</td>
+                                    <td>${tea.brandName}</td>
+                                    <td>Rs. <fmt:formatNumber value="${tea.price}" pattern="#,##0"/></td>
                                     <td>
-                                        <div class="stock-cell">
-                                            <div class="stock-bar-wrap">
-                                                <div class="stock-bar stock-bar-${p.stockStatus}"
-                                                     style="width: ${p.stock > 100 ? 100 : p.stock}%"></div>
-                                            </div>
-                                            <span>${p.stock}</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-stock-${p.stockStatus}">
-                                            <c:choose>
-                                                <c:when test="${p.stockStatus == 'active'}">ACTIVE</c:when>
-                                                <c:when test="${p.stockStatus == 'low'}">LOW STOCK</c:when>
-                                                <c:otherwise>OUT OF STOCK</c:otherwise>
-                                            </c:choose>
-                                        </span>
+                                        <c:choose>
+                                            <c:when test="${tea.stock <= 10}">
+                                                <span class="badge badge-rejected">${tea.stock} low</span>
+                                            </c:when>
+                                            <c:otherwise>${tea.stock}</c:otherwise>
+                                        </c:choose>
                                     </td>
                                     <td class="action-btns">
-                                        <a href="${pageContext.request.contextPath}/admin/products?action=edit&id=${p.id}"
-                                           class="btn-edit">edit</a>
-                                        <a href="${pageContext.request.contextPath}/admin/products?action=delete&id=${p.id}"
-                                           class="btn-delete"
-                                           onclick="return confirm('Delete ${p.name}? This cannot be undone.')">&#10005;</a>
+                                        <a href="${pageContext.request.contextPath}/admin/products?action=edit&id=${tea.id}" class="btn-edit">edit</a>
+                                        <form action="${pageContext.request.contextPath}/admin/products" method="post" style="display:inline">
+                                            <input type="hidden" name="action" value="delete"/>
+                                            <input type="hidden" name="id" value="${tea.id}"/>
+                                            <button type="submit" class="btn-delete" onclick="return confirm('Delete this product?')">✕</button>
+                                        </form>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -152,9 +94,7 @@
                 </tbody>
             </table>
         </div>
-
     </main>
 </div>
-
 </body>
 </html>

@@ -18,7 +18,7 @@
         <div class="sidebar-brand">H<span>/</span>ROMA</div>
         <p class="sidebar-label">ADMIN PANEL</p>
         <nav>
-            <a href="${pageContext.request.contextPath}/admin/dashboard" class="active">Dashboard</a>
+            <a href="${pageContext.request.contextPath}/admin/adminDashboard.jsp" class="active">Dashboard</a>
             <a href="${pageContext.request.contextPath}/admin/products">Products</a>
             <a href="${pageContext.request.contextPath}/admin/categories">Categories</a>
             <a href="${pageContext.request.contextPath}/admin/orders">Orders</a>

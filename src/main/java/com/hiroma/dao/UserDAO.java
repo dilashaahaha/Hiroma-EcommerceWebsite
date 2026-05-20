@@ -1,7 +1,7 @@
 package com.hiroma.dao;
 
 import com.hiroma.model.UserModel;
-import com.hiroma.util.DBConfig;
+import com.hiroma.util.DBConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ public class UserDAO {
     // Register a new user
     public boolean registerUser(UserModel user) throws SQLException {
         String sql = "INSERT INTO users (full_name, email, phone, password, dob, role, status) VALUES (?, ?, ?, ?, ?, 'user', 'pending')";
-        try (Connection conn = DBConfig.getConnection();
+        try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, user.getFullName());
             ps.setString(2, user.getEmail());
@@ -26,7 +26,7 @@ public class UserDAO {
     // Get user by email and password (for login)
     public UserModel getUserByEmailAndPassword(String email, String password) throws SQLException {
         String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
-        try (Connection conn = DBConfig.getConnection();
+        try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, email);
             ps.setString(2, password);
@@ -41,7 +41,7 @@ public class UserDAO {
     // Check if email already exists
     public boolean emailExists(String email) throws SQLException {
         String sql = "SELECT id FROM users WHERE email = ?";
-        try (Connection conn = DBConfig.getConnection();
+        try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, email);
             ResultSet rs = ps.executeQuery();
@@ -52,7 +52,7 @@ public class UserDAO {
     // Check if phone already exists
     public boolean phoneExists(String phone) throws SQLException {
         String sql = "SELECT id FROM users WHERE phone = ?";
-        try (Connection conn = DBConfig.getConnection();
+        try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, phone);
             ResultSet rs = ps.executeQuery();
@@ -63,7 +63,7 @@ public class UserDAO {
     // Get user by ID
     public UserModel getUserById(int id) throws SQLException {
         String sql = "SELECT * FROM users WHERE id = ?";
-        try (Connection conn = DBConfig.getConnection();
+        try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -78,7 +78,7 @@ public class UserDAO {
     public List<UserModel> getAllUsers() throws SQLException {
         List<UserModel> users = new ArrayList<>();
         String sql = "SELECT * FROM users WHERE role = 'user' ORDER BY created_at DESC";
-        try (Connection conn = DBConfig.getConnection();
+        try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
@@ -91,7 +91,7 @@ public class UserDAO {
     // Update user status (approve/reject)
     public boolean updateStatus(int userId, String status) throws SQLException {
         String sql = "UPDATE users SET status = ? WHERE id = ?";
-        try (Connection conn = DBConfig.getConnection();
+        try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, status);
             ps.setInt(2, userId);
@@ -102,7 +102,7 @@ public class UserDAO {
     // Update user profile
     public boolean updateUser(UserModel user) throws SQLException {
         String sql = "UPDATE users SET full_name=?, email=?, phone=?, dob=? WHERE id=?";
-        try (Connection conn = DBConfig.getConnection();
+        try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, user.getFullName());
             ps.setString(2, user.getEmail());
@@ -116,7 +116,7 @@ public class UserDAO {
     // Update password
     public boolean updatePassword(int userId, String newPassword) throws SQLException {
         String sql = "UPDATE users SET password=? WHERE id=?";
-        try (Connection conn = DBConfig.getConnection();
+        try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, newPassword);
             ps.setInt(2, userId);
@@ -127,7 +127,7 @@ public class UserDAO {
     // Delete user
     public boolean deleteUser(int userId) throws SQLException {
         String sql = "DELETE FROM users WHERE id = ?";
-        try (Connection conn = DBConfig.getConnection();
+        try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, userId);
             return ps.executeUpdate() > 0;

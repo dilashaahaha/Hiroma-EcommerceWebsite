@@ -1,40 +1,43 @@
 package com.hiroma.controller;
 
+import com.hiroma.dao.ReviewDao;
+import com.hiroma.dao.TeaDAO;
+import com.hiroma.model.TeaModel;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.sql.SQLException;
 
-/**
- * Servlet implementation class TeaDetailServlet
- */
-@WebServlet("/TeaDetailServlet")
+@WebServlet("/tea")
 public class TeaDetailServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public TeaDetailServlet() {
-        super();
-        // TODO Auto-generated constructor stub
+
+    private TeaDAO teaDAO = new TeaDAO();
+    private ReviewDao reviewDao = new ReviewDao();
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            String idStr = request.getParameter("id");
+            if (idStr == null) {
+                response.sendRedirect(request.getContextPath() + "/shop");
+                return;
+            }
+            int id = Integer.parseInt(idStr);
+            TeaModel tea = teaDAO.getTeaById(id);
+            if (tea == null) {
+                response.sendRedirect(request.getContextPath() + "/shop");
+                return;
+            }
+            request.setAttribute("tea", tea);
+            request.setAttribute("reviews", reviewDao.getReviewsByProduct(id));
+            request.getRequestDispatcher("/WEB-INF/views/public/teaDetail.jsp").forward(request, response);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            response.sendRedirect(request.getContextPath() + "/shop");
+        }
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }

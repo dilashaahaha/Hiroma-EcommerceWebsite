@@ -1,73 +1,73 @@
 package com.hiroma.dao;
 
-import com.hiroma.model.CategoryModel;
-import com.hiroma.util.DBConfig;
-
+import com.hiroma.util.DBConnection;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class CategoryDAO {
 
-    public List<CategoryModel> getAllCategories() throws SQLException {
-        List<CategoryModel> list = new ArrayList<>();
-        String sql = "SELECT * FROM category ORDER BY name ASC";
-        try (Connection conn = DBConfig.getConnection();
+    public List<Map<String, Object>> getAllCategories() throws SQLException {
+        List<Map<String, Object>> list = new ArrayList<>();
+        String sql = "SELECT c.*, COUNT(p.id) as product_count " +
+                     "FROM category c LEFT JOIN product p ON p.category_id = c.id " +
+                     "GROUP BY c.id ORDER BY c.name";
+        try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
-                CategoryModel c = new CategoryModel();
-                c.setId(rs.getInt("id"));
-                c.setName(rs.getString("name"));
-                c.setDescription(rs.getString("description"));
-                list.add(c);
+                Map<String, Object> row = new HashMap<>();
+                row.put("id", rs.getInt("id"));
+                row.put("name", rs.getString("name"));
+                row.put("description", rs.getString("description"));
+                row.put("productCount", rs.getInt("product_count"));
+                list.add(row);
             }
         }
         return list;
     }
 
-    public boolean addCategory(CategoryModel c) throws SQLException {
+    public boolean addCategory(String name, String description) throws SQLException {
         String sql = "INSERT INTO category (name, description) VALUES (?, ?)";
-        try (Connection conn = DBConfig.getConnection();
+        try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, c.getName());
-            ps.setString(2, c.getDescription());
+            ps.setString(1, name);
+            ps.setString(2, description);
             return ps.executeUpdate() > 0;
         }
     }
 
-    public boolean updateCategory(CategoryModel c) throws SQLException {
+    public boolean updateCategory(int id, String name, String description) throws SQLException {
         String sql = "UPDATE category SET name=?, description=? WHERE id=?";
-        try (Connection conn = DBConfig.getConnection();
+        try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, c.getName());
-            ps.setString(2, c.getDescription());
-            ps.setInt(3, c.getId());
+            ps.setString(1, name);
+            ps.setString(2, description);
+            ps.setInt(3, id);
             return ps.executeUpdate() > 0;
         }
     }
 
     public boolean deleteCategory(int id) throws SQLException {
-        String sql = "DELETE FROM category WHERE id = ?";
-        try (Connection conn = DBConfig.getConnection();
+        String sql = "DELETE FROM category WHERE id=?";
+        try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             return ps.executeUpdate() > 0;
         }
     }
 
-    public CategoryModel getCategoryById(int id) throws SQLException {
-        String sql = "SELECT * FROM category WHERE id = ?";
-        try (Connection conn = DBConfig.getConnection();
+    public Map<String, Object> getCategoryById(int id) throws SQLException {
+        String sql = "SELECT * FROM category WHERE id=?";
+        try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                CategoryModel c = new CategoryModel();
-                c.setId(rs.getInt("id"));
-                c.setName(rs.getString("name"));
-                c.setDescription(rs.getString("description"));
-                return c;
+                Map<String, Object> row = new HashMap<>();
+                row.put("id", rs.getInt("id"));
+                row.put("name", rs.getString("name"));
+                row.put("description", rs.getString("description"));
+                return row;
             }
         }
         return null;

@@ -1,40 +1,35 @@
 package com.hiroma.controller;
 
+import com.hiroma.dao.OrderDAO;
+import com.hiroma.model.TeaModel;
+import com.hiroma.model.UserModel;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.sql.SQLException;
+import java.util.List;
 
-/**
- * Servlet implementation class DashboardServlet
- */
-@WebServlet("/DashboardServlet")
+@WebServlet("/dashboard")
 public class DashboardServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DashboardServlet() {
-        super();
-        // TODO Auto-generated constructor stub
+
+    private OrderDAO orderDAO = new OrderDAO();
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        UserModel user = (UserModel) request.getSession().getAttribute("loggedInUser");
+        try {
+            request.setAttribute("orders", orderDAO.getOrdersByUser(user.getId()));
+            request.setAttribute("orderCount", orderDAO.getOrderCountByUser(user.getId()));
+            List<TeaModel> wishlist = (List<TeaModel>) request.getSession().getAttribute("wishlist");
+            request.setAttribute("wishlistCount", wishlist != null ? wishlist.size() : 0);
+            request.getRequestDispatcher("/WEB-INF/views/user/dashboard.jsp").forward(request, response);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            request.getRequestDispatcher("/WEB-INF/views/user/dashboard.jsp").forward(request, response);
+        }
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }
