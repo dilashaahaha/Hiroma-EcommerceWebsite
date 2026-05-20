@@ -22,10 +22,10 @@ public class HomeServlet extends HttpServlet {
         try {
             request.setAttribute("featuredTeas", teaDAO.getFeaturedTeas());
             request.setAttribute("categories", categoryDAO.getAllCategories());
-            request.getRequestDispatcher("/WEB-INF/views/public/home.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/pages/home.jsp").forward(request, response);
         } catch (SQLException e) {
             e.printStackTrace();
-            request.getRequestDispatcher("/WEB-INF/views/public/home.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/pages/home.jsp").forward(request, response);
         }
     }
 }

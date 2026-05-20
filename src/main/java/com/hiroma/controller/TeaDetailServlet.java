@@ -34,7 +34,7 @@ public class TeaDetailServlet extends HttpServlet {
             }
             request.setAttribute("tea", tea);
             request.setAttribute("reviews", reviewDao.getReviewsByProduct(id));
-            request.getRequestDispatcher("/WEB-INF/views/public/teaDetail.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/pages/teaDetail.jsp").forward(request, response);
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendRedirect(request.getContextPath() + "/shop");

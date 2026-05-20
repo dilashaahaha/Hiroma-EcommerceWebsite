@@ -13,7 +13,7 @@ public class ContactServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/views/public/contact.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/pages/contact.jsp").forward(request, response);
     }
 
     @Override
@@ -21,6 +21,6 @@ public class ContactServlet extends HttpServlet {
             throws ServletException, IOException {
         // Just show success message — no DB needed for contact form
         request.setAttribute("success", "Your message has been sent. We will get back to you within 1 business day.");
-        request.getRequestDispatcher("/WEB-INF/views/public/contact.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/pages/contact.jsp").forward(request, response);
     }
 }

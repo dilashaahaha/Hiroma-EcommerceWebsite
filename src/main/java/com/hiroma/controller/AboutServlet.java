@@ -13,6 +13,6 @@ public class AboutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/views/public/about.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/pages/about.jsp").forward(request, response);
     }
 }

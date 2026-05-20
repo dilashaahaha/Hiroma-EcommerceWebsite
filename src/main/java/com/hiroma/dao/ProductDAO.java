@@ -1,7 +1,7 @@
 package com.hiroma.dao;
 
 import com.hiroma.model.ProductModel;
-import com.hiroma.util.DBConfig;
+import com.hiroma.util.DBConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class ProductDAO {
                      "LEFT JOIN category c ON p.category_id = c.id " +
                      "LEFT JOIN brand b ON p.brand_id = b.id " +
                      "ORDER BY p.created_at DESC";
-        try (Connection conn = DBConfig.getConnection();
+        try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
@@ -47,7 +47,7 @@ public class ProductDAO {
         }
         sql.append(" ORDER BY p.created_at DESC");
 
-        try (Connection conn = DBConfig.getConnection();
+        try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql.toString())) {
             int idx = 1;
             if (keyword != null && !keyword.trim().isEmpty()) {
@@ -70,7 +70,7 @@ public class ProductDAO {
                      "FROM product p " +
                      "LEFT JOIN category c ON p.category_id = c.id " +
                      "LEFT JOIN brand b ON p.brand_id = b.id WHERE p.id = ?";
-        try (Connection conn = DBConfig.getConnection();
+        try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -83,7 +83,7 @@ public class ProductDAO {
     public boolean addProduct(ProductModel p) throws SQLException {
         String sql = "INSERT INTO product (name, description, price, stock, image_path, category_id, brand_id) " +
                      "VALUES (?, ?, ?, ?, ?, ?, ?)";
-        try (Connection conn = DBConfig.getConnection();
+        try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, p.getName());
             ps.setString(2, p.getDescription());
@@ -102,7 +102,7 @@ public class ProductDAO {
                      "category_id=?, brand_id=?" +
                      (p.getImagePath() != null ? ", image_path=?" : "") +
                      " WHERE id=?";
-        try (Connection conn = DBConfig.getConnection();
+        try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, p.getName());
             ps.setString(2, p.getDescription());
@@ -123,7 +123,7 @@ public class ProductDAO {
     // Delete product
     public boolean deleteProduct(int id) throws SQLException {
         String sql = "DELETE FROM product WHERE id = ?";
-        try (Connection conn = DBConfig.getConnection();
+        try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             return ps.executeUpdate() > 0;

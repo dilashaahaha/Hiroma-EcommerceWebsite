@@ -18,7 +18,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/views/public/register.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/pages/register.jsp").forward(request, response);
     }
 
     // Handle form submission
@@ -39,7 +39,7 @@ public class RegisterServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/pendingApproval");
         } else {
             request.setAttribute("error", result);
-            request.getRequestDispatcher("/WEB-INF/views/public/register.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/pages/register.jsp").forward(request, response);
         }
     }
 }

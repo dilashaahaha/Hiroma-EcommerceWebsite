@@ -20,7 +20,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/views/public/login.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/pages/login.jsp").forward(request, response);
     }
 
     @Override
@@ -35,19 +35,19 @@ public class LoginServlet extends HttpServlet {
 
             if (user == null) {
                 request.setAttribute("error", "Invalid email or password.");
-                request.getRequestDispatcher("/WEB-INF/views/public/login.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/views/pages/login.jsp").forward(request, response);
                 return;
             }
 
             if (user.getStatus().equals("pending")) {
                 request.setAttribute("error", "Your account is pending admin approval.");
-                request.getRequestDispatcher("/WEB-INF/views/public/login.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/views/pages/login.jsp").forward(request, response);
                 return;
             }
 
             if (user.getStatus().equals("rejected")) {
                 request.setAttribute("error", "Your account has been rejected. Contact support.");
-                request.getRequestDispatcher("/WEB-INF/views/public/login.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/views/pages/login.jsp").forward(request, response);
                 return;
             }
 
@@ -65,7 +65,7 @@ public class LoginServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
             request.setAttribute("error", "Database error. Please try again.");
-            request.getRequestDispatcher("/WEB-INF/views/public/login.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/pages/login.jsp").forward(request, response);
         }
     }
 }

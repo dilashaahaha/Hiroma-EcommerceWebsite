@@ -39,7 +39,7 @@ public class ShopServlet extends HttpServlet {
 
             request.setAttribute("teas", teas);
             request.setAttribute("categories", categoryDAO.getAllCategories());
-            request.getRequestDispatcher("/WEB-INF/views/public/shop.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/pages/shop.jsp").forward(request, response);
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendRedirect(request.getContextPath() + "/home");

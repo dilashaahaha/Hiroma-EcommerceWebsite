@@ -1,0 +1,133 @@
+/* WISHLIST */
+.wishlist-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+}
+
+.wishlist-header { margin-bottom: 2rem; }
+
+.wishlist-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+}
+
+.wishlist-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 0.3rem;
+}
+
+.wishlist-header h1 em { font-style: italic; color: var(--gold); }
+
+.wishlist-sub {
+    font-size: 0.75rem;
+    color: var(--text-light);
+}
+
+.wishlist-empty {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-light);
+}
+
+.btn-browse {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--green-dark);
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    border-radius: 3px;
+}
+
+.wishlist-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.wishlist-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.wl-img {
+    width: 70px;
+    height: 70px;
+    background: var(--green-dark);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.wl-img span {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: rgba(255,255,255,0.2);
+}
+
+.wl-info { flex: 1; }
+
+.wl-brand {
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    color: var(--text-light);
+    text-transform: uppercase;
+    margin-bottom: 0.2rem;
+}
+
+.wl-name {
+    display: block;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    text-decoration: none;
+    margin-bottom: 0.2rem;
+}
+
+.wl-name:hover { color: var(--green-dark); }
+
+.wl-category {
+    font-size: 0.72rem;
+    color: var(--text-light);
+    margin-bottom: 0.3rem;
+}
+
+.wl-price {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--green-dark);
+}
+
+.wl-remove { flex-shrink: 0; }
+
+.btn-remove {
+    background: none;
+    border: 1px solid #ddd;
+    padding: 0.45rem 0.9rem;
+    border-radius: 3px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.68rem;
+    color: #c0392b;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-remove:hover { background: #fdecea; border-color: #c0392b; }
+
+@media (max-width: 600px) {
+    .wishlist-card { flex-direction: column; align-items: flex-start; }
+}

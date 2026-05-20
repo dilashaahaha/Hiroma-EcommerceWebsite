@@ -14,7 +14,7 @@ public class PendingApprovalServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/views/public/pendingApproval.jsp")
+        request.getRequestDispatcher("/WEB-INF/views/pages/pendingApproval.jsp")
                .forward(request, response);
     }
 }
